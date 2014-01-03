@@ -1,0 +1,4 @@
+SE [master] 
+GO  CREATE DATABASE [vcloud] ON PRIMARY  (NAME = N'vcloud', FILENAME = N'C:\vcloud.mdf', SIZE = 100MB, FILEGROWTH = 10% ) LOG ON   (NAME = N'vcdb_log', FILENAME = N'C:\vcloud.ldf', SIZE = 1MB, FILEGROWTH = 10%) COLLATE Latin1_General_CS_AS
+GO  USE [vcloud] GO  ALTER DATABASE [vcloud] SET SINGLE_USER WITH ROLLBACK IMMEDIATE; ALTER DATABASE [vcloud] SET ALLOW_SNAPSHOT_ISOLATION ON;  ALTER DATABASE [vcloud] SET READ_COMMITTED_SNAPSHOT ON WITH NO_WAIT;   ALTER DATABASE [vcloud] SET MULTI_USER; GO   USE [vcloud] GO  CREATE LOGIN [vcloud] WITH PASSWORD = 'vcloudpass', DEFAULT_DATABASE =[vcloud],    DEFAULT_LANGUAGE =[us_english], CHECK_POLICY=OFF GO  CREATE USER [vcloud] for LOGIN [vcloud] 
+GO  USE [vcloud] GO  sp_addrolemember [db_owner], [vcloud] GO
