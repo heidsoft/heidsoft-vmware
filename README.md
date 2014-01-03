@@ -23,7 +23,7 @@ http://www.vmware.com/support/developer/viperltoolkit/
 http://communities.vmware.com/community/developer/forums/java_toolkit  
 ###PowerCLI###
 http://communities.vmware.com/community/vmtn/server/vsphere/automationtools/powercli  
-###vCO### 
+###vCO###
 http://communities.vmware.com/community/vmtn/server/vcenter/orchestrator  
 http://communities.vmware.com/community/vmtn/developer/forums/orchestrator  
 http://www.vmware.com/support/pubs/orchestrator_pubs.html  
