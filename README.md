@@ -1,7 +1,8 @@
-Vmware
+VMWARE
 ======
 
-vmware技术学习指南
+#vmware技术学习指南#
+=作者：黑洞=
 ##资源网址##
 ###开发社区###
 http://communities.vmware.com/community/vmtn/developer/downloads  
