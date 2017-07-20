@@ -1,0 +1,110 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.vm.device.VirtualVMCIDevice.Protocol" name="vim.vm.device.VirtualVMCIDevice.Protocol"></a>
+<h1>Enum - 
+						VirtualMachineVMCIDeviceProtocol</h1>
+<dl>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<br>
+<h2>Enum Description</h2>
+<p></p>
+         Set of possible values for protocol field in FilterSpec.
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Enum Constants</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><a id="anyProtocol" name="anyProtocol"></a>anyProtocol</td><td>
+      All of the above.
+   <br>
+</td>
+</tr>
+<tr class="r0">
+<td><a id="datagram" name="datagram"></a>datagram</td><td>
+      VMCI and VMCI Socket datagram send op.
+ Since VMCI Socket datagrams map ports directly to resources,
+ there is no need to distinguish between the two.
+   <br>
+</td>
+</tr>
+<tr class="r1">
+<td><a id="doorbell" name="doorbell"></a>doorbell</td><td>
+      VMCI doorbell notification
+   <br>
+</td>
+</tr>
+<tr class="r0">
+<td><a id="hypervisor" name="hypervisor"></a>hypervisor</td><td>
+      VMCI hypervisor datagram send op.
+ Direction code is not applicable to this one.
+   <br>
+</td>
+</tr>
+<tr class="r1">
+<td><a id="queuepair" name="queuepair"></a>queuepair</td><td>
+      VMCI queue pair alloc operation.
+ Direction code not applicable to this one.
+   <br>
+</td>
+</tr>
+<tr class="r0">
+<td><a id="stream" name="stream"></a>stream</td><td>
+      VMCI Stream Socket connect op.
+   <br>
+</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <simpleType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="VirtualMachineVMCIDeviceProtocol">
+            <restriction base="xsd:string">
+               <enumeration value="hypervisor"/>
+               <enumeration value="doorbell"/>
+               <enumeration value="queuepair"/>
+               <enumeration value="datagram"/>
+               <enumeration value="stream"/>
+               <enumeration value="anyProtocol"/>
+            </restriction>
+         </simpleType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

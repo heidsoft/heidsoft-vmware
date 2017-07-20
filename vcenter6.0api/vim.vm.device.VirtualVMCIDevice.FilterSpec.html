@@ -1,0 +1,154 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.vm.device.VirtualVMCIDevice.FilterSpec" name="vim.vm.device.VirtualVMCIDevice.FilterSpec"></a>
+<h1>Data Object - VirtualMachineVMCIDeviceFilterSpec</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.vm.device.VirtualVMCIDevice.FilterInfo.html#field_detail">VirtualMachineVMCIDeviceFilterInfo</a>
+</dd>
+<dt>Extends</dt>
+<dd>
+<a href="vmodl.DynamicData.html">DynamicData</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<H2>Data Object 
+                  Description</H2>
+<p></p>
+         The FilterSpec data object describes a filter based on protocol,
+ direction and port or port-range.
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="action" name="action"></a><strong>action</strong></td><td>xsd:string</td><td>
+<p></p>
+         String value from Action enum object.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="direction" name="direction"></a><strong>direction</strong></td><td>xsd:string</td><td>
+<p></p>
+         String value from Direction enum object.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="lowerDstPortBoundary" name="lowerDstPortBoundary"></a><strong>lowerDstPortBoundary</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:long</td><td>
+<p></p>
+         Long value representing the lower destination port boundary.
+ <p>
+ If unset, the lower destination port boundary is default to the
+ lowest port number supported by the given protocol.
+ <p>
+ To specify a single port, both lowerDstPortBoundary and
+ upperDstPortBoundary shall be set to the same value.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="protocol" name="protocol"></a><strong>protocol</strong></td><td>xsd:string</td><td>
+<p></p>
+         String value from Protocol enum object
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="rank" name="rank"></a><strong>rank</strong></td><td>xsd:long</td><td>
+<p></p>
+         Long value representing filter rank.
+ This is the rank of this filter.  Filters are guaranteed to be
+ processed in ascending rank order, that is, if rank1 < rank2,  then
+ rank1 is processed before rank2.  The ranks within an array of
+ filters should be unique.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="upperDstPortBoundary" name="upperDstPortBoundary"></a><strong>upperDstPortBoundary</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:long</td><td>
+<p></p>
+         Long value representing the upper destination port range.
+ <p>
+ If unset, the upper destination port boundary is default to the
+ highest port number supported by the given protocol.
+ <p>
+ To specify a single port, both lowerDstPortBoundary and
+ upperDstPortBoundary shall be set to the same value.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td colspan="3">
+						Properties inherited from <a href="vmodl.DynamicData.html">DynamicData</a></td>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set</span>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="VirtualMachineVMCIDeviceFilterSpec">
+            <complexContent>
+               <extension base="vim25:DynamicData">
+                  <sequence>
+                     <element name="rank" type="xsd:long"/>
+                     <element name="action" type="xsd:string"/>
+                     <element name="protocol" type="xsd:string"/>
+                     <element name="direction" type="xsd:string"/>
+                     <element name="lowerDstPortBoundary" type="xsd:long" minOccurs="0"/>
+                     <element name="upperDstPortBoundary" type="xsd:long" minOccurs="0"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

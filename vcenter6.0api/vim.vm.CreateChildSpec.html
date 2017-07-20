@@ -1,0 +1,131 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.vm.CreateChildSpec" name="vim.vm.CreateChildSpec"></a>
+<h1>Data Object - VirtualMachineCreateChildSpec</h1>
+<dl>
+<dt>Extends</dt>
+<dd>
+<a href="vmodl.DynamicData.html">DynamicData</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.option.OptionValue.html">OptionValue</a>, <a href="vim.vm.RelocateSpec.html">VirtualMachineRelocateSpec</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<H2>Data Object 
+                  Description</H2>
+<p></p>
+         Specification for creating child virtual machine
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="configParams" name="configParams"></a><strong>configParams</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.option.OptionValue.html">OptionValue[]</a></td><td>
+<p></p>
+         Opaque client-provided configuration information for the child virtual
+  machine, accessible to guest after being forked.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="location" name="location"></a><strong>location</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.vm.RelocateSpec.html">VirtualMachineRelocateSpec</a></td><td>
+<p></p>
+         A type of <a href="vim.vm.RelocateSpec.html">VirtualMachineRelocateSpec</a> that specifies the location of resources
+  the newly created virtual machine will use. If not specified, the default value
+  will be used for each property. Only the following fields are supported:
+  <ul>
+    <li> A <a href="vim.vm.RelocateSpec.html#datastore">datastore</a> where the virtual machine
+         will be located on physical storage. If not specified, the current
+         datastore is used. </li>
+    <li> A <a href="vim.vm.RelocateSpec.html#pool">pool</a> The resource pool determines
+         what compute resources will be available to the child. The resource pool
+         must contain resources from the host where the parent is located since
+         the child will be created on the same host. If not specified, the current
+         resource pool will be used.</li>
+    <li> <a href="vim.vm.RelocateSpec.DiskLocator.html#datastore">datastore</a> which allows
+         specifying the datastore location for each virtual disk. Only
+         applicable for persistent child, if not specified,
+         <a href="vim.vm.RelocateSpec.html#datastore">datastore</a> will be used. </li>
+  </ul>
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="persistent" name="persistent"></a><strong>persistent</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         Flag to indicate the fork child type. If it is set to true, a persistent child
+  will be created. If set to false, a non-persistent child will be created.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td colspan="3">
+						Properties inherited from <a href="vmodl.DynamicData.html">DynamicData</a></td>
+</tr>
+<tr class="r1">
+<td colspan="3">None</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set</span>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="VirtualMachineCreateChildSpec">
+            <complexContent>
+               <extension base="vim25:DynamicData">
+                  <sequence>
+                     <element name="location" type="vim25:VirtualMachineRelocateSpec" minOccurs="0"/>
+                     <element name="persistent" type="xsd:boolean"/>
+                     <element name="configParams" type="vim25:OptionValue" minOccurs="0" maxOccurs="unbounded"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

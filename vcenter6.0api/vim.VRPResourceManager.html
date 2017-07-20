@@ -1,0 +1,1297 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.VRPResourceManager" name="vim.VRPResourceManager"></a>
+<h1>Managed Object -  
+						VRPResourceManager</h1>
+<dl>
+<dt>See also</dt>
+<dd>
+<a href="vim.ManagedEntity.html">ManagedEntity</a>, <a href="vim.ResourceConfigSpec.html">ResourceConfigSpec</a>, <a href="vim.ResourcePool.html">ResourcePool</a>, <a href="vim.VirtualMachine.html">VirtualMachine</a>, <a href="vim.VRPResourceManager.VirtualResourcePoolSpec.html">VirtualResourcePoolSpec</a>, <a href="vim.VRPResourceManager.VirtualResourcePoolUsage.html">VirtualResourcePoolUsage</a>, <a href="vim.VRPResourceManager.VRPEditSpec.html">VRPEditSpec</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<br>
+<h2>Managed Object Description</h2>
+<p></p>
+         This managed object type provides a way to manage Virtual Resource Pools (VRP).
+  VRPs can stitch together resource pools from various clusters into a single
+  large virtual pool that acts as a single resource pool. VRPs are composed of
+  hubs, which are either clusters or individal resource pools. These hubs further
+  contain child resource pools, which form a backing for the VRP. A VRP can contain
+  a mixture of hubs, some of which can be clusters and some of them resource pools.
+      <a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<br>
+<a id="method_detail" name="method_detail"></a>
+<p class="table-title">Methods</p>
+<table cellspacing="0">
+<tr class="r1">
+<th>
+				          Methods defined in this Managed Object
+				        </th>
+</tr>
+<tr class="r0">
+<td><a href="#CreateVRP">CreateVRP</a>, <a href="#DeleteVRP">DeleteVRP</a>, <a href="#DeployVM">DeployVM</a>, <a href="#GetAllVRPIds">GetAllVRPIds</a>, <a href="#GetChildRPforHub">GetChildRPforHub</a>, <a href="#GetRPSettings">GetRPSettings</a>, <a href="#GetVRPofVM">GetVRPofVM</a>, <a href="#GetVRPSettings">GetVRPSettings</a>, <a href="#GetVRPUsage">GetVRPUsage</a>, <a href="#SetManagedByVDC">SetManagedByVDC</a>, <a href="#UndeployVM">UndeployVM</a>, <a href="#UpdateVRP">UpdateVRP</a></td>
+</tr>
+</table>
+<br>
+<a id="CreateVRP" name="CreateVRP"></a>
+<h1>CreateVRP</h1>
+<p></p>
+         Creates a new Virtual Resource Pool.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>spec</strong></td><td><a href="vim.VRPResourceManager.VirtualResourcePoolSpec.html">VirtualResourcePoolSpec</a></td><td>
+<p></p>
+         The VRP is created to have this config. The spec can either
+   have member hubs specified, or the child resource pools. If hubs are
+   specified, a child resource pool will be created within every hub. If
+   child resource pools are specified, the parents of these resource pools
+   will be considered as hubs.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InsufficientResourcesFault.html">InsufficientResourcesFault</a></td><td>Thrown if the VRP specification cannot be supported by group of backing hubs. Admission control not guaranteed.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the hubs/child resource pools do not support this operation in their current state; or if both hubs and child resource pools are specified in the VirtualResourcePoolSpec.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('CreateVRP-textarea');expandcontent(this, 'CreateVRP-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="CreateVRP-div">
+<textarea cols="20" rows="10" name="CreateVRP-textarea" wrap="off" readonly="1" id="CreateVRP-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="CreateVRP" type="vim25:CreateVRPRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="CreateVRPResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="DeleteVRP" name="DeleteVRP"></a>
+<h1>DeleteVRP</h1>
+<p></p>
+         Deletes a VRP with the given Id if it exists.
+   During deletion, all of the child resource pools under the hubs
+   will be deleted. If there are any VMs under those resource pools,
+   they will be moved directly under the hub. For hubs that are cluster,
+   those VMs will be moved to the root resource pool.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vrpId</strong></td><td>xsd:string</td><td>
+<p></p>
+         The unique Id of the VRP
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the VRP cannot be deleted in its current state.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the VRP id cannot be found.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('DeleteVRP-textarea');expandcontent(this, 'DeleteVRP-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="DeleteVRP-div">
+<textarea cols="20" rows="10" name="DeleteVRP-textarea" wrap="off" readonly="1" id="DeleteVRP-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeleteVRP" type="vim25:DeleteVRPRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeleteVRPResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="DeployVM" name="DeployVM"></a>
+<h1>DeployVM</h1>
+<p></p>
+         Deploy a VM in a given VRP, hub pair. Before deployment,
+   admission control is performed to make sure that VRP can
+   accomodate the VM's reservations.
+
+   If the VM is already deployed in the same hub, the VM
+   will remain deployed. The API will just rerun the admission
+   control checks.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vrpId</strong></td><td>xsd:string</td><td>
+<p></p>
+         The unique Id of the VRP.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>vm</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         MoRef of the VM.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>cluster</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ManagedEntity.html">ManagedEntity</a></td><td>
+<p></p>
+         MoRef of the hub.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InsufficientResourcesFault.html">InsufficientResourcesFault</a></td><td>Thrown if the VM cannot be supported by the VRP due to insufficient resources.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the VM cannot be deployed in its current state.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the VRP or VM or hub cannot be found.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('DeployVM-textarea');expandcontent(this, 'DeployVM-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="DeployVM-div">
+<textarea cols="20" rows="10" name="DeployVM-textarea" wrap="off" readonly="1" id="DeployVM-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeployVM" type="vim25:DeployVMRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeployVMResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="GetAllVRPIds" name="GetAllVRPIds"></a>
+<h1>GetAllVRPIds</h1>
+<p></p>
+         Get the list of Ids of all the Virtual Resource Pools in the system.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string[]</td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the information cannot be obtained due to invalid data.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GetAllVRPIds-textarea');expandcontent(this, 'GetAllVRPIds-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GetAllVRPIds-div">
+<textarea cols="20" rows="10" name="GetAllVRPIds-textarea" wrap="off" readonly="1" id="GetAllVRPIds-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetAllVRPIds" type="vim25:GetAllVRPIdsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetAllVRPIdsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="GetChildRPforHub" name="GetChildRPforHub"></a>
+<h1>GetChildRPforHub</h1>
+<p></p>
+         Given the VRP Id and a hub, gets the associated child resource pool.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vrpId</strong></td><td>xsd:string</td><td>
+<p></p>
+         ID of the VRP.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>hub</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ManagedEntity.html">ManagedEntity</a></td><td>
+<p></p>
+         MoRef of the hub.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ResourcePool.html">ResourcePool</a></td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the data cannot be accessed.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the VRP/hub cannot be found, or if the hub is not a part of the specified VRP.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GetChildRPforHub-textarea');expandcontent(this, 'GetChildRPforHub-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GetChildRPforHub-div">
+<textarea cols="20" rows="10" name="GetChildRPforHub-textarea" wrap="off" readonly="1" id="GetChildRPforHub-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetChildRPforHub" type="vim25:GetChildRPforHubRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetChildRPforHubResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:ManagedObjectReference" minOccurs="0"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="GetRPSettings" name="GetRPSettings"></a>
+<h1>GetRPSettings</h1>
+<p></p>
+         Get ResourceConfigSpec for a resource pool that is under
+  a member hub of some VRP. This is to get the settings that DRS
+  generated for that child resource pool. The setting might be absent
+  for recently added resource pools.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>resourcePool</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ResourcePool.html">ResourcePool</a></td><td>
+<p></p>
+         MoRef of the resource pool
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.ResourceConfigSpec.html">ResourceConfigSpec</a></td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the resource pool is not found.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GetRPSettings-textarea');expandcontent(this, 'GetRPSettings-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GetRPSettings-div">
+<textarea cols="20" rows="10" name="GetRPSettings-textarea" wrap="off" readonly="1" id="GetRPSettings-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetRPSettings" type="vim25:GetRPSettingsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetRPSettingsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:ResourceConfigSpec" minOccurs="0"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="GetVRPofVM" name="GetVRPofVM"></a>
+<h1>GetVRPofVM</h1>
+<p></p>
+         Get the ID of the VRP a VM belongs to. If the VM does not
+   belong to any VRP, the returned optional string will not be
+   set to any value.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         MoRef of the VM.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the data cannot be accessed.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the VM is not found.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GetVRPofVM-textarea');expandcontent(this, 'GetVRPofVM-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GetVRPofVM-div">
+<textarea cols="20" rows="10" name="GetVRPofVM-textarea" wrap="off" readonly="1" id="GetVRPofVM-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetVRPofVM" type="vim25:GetVRPofVMRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetVRPofVMResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" minOccurs="0"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="GetVRPSettings" name="GetVRPSettings"></a>
+<h1>GetVRPSettings</h1>
+<p></p>
+         Get the settings for a VRP with the given Id if it exists.
+  The returned VirtualResourcePoolSpec object will have all of its
+  fields populated.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vrpId</strong></td><td>xsd:string</td><td>
+<p></p>
+         Id of the VRP.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.VRPResourceManager.VirtualResourcePoolSpec.html">VirtualResourcePoolSpec</a></td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the data cannot be accessed.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the VRP cannot be found.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GetVRPSettings-textarea');expandcontent(this, 'GetVRPSettings-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GetVRPSettings-div">
+<textarea cols="20" rows="10" name="GetVRPSettings-textarea" wrap="off" readonly="1" id="GetVRPSettings-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetVRPSettings" type="vim25:GetVRPSettingsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetVRPSettingsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:VirtualResourcePoolSpec"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="GetVRPUsage" name="GetVRPUsage"></a>
+<h1>GetVRPUsage</h1>
+<p></p>
+         Get the usage values for a VRP with the given Id.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vrpId</strong></td><td>xsd:string</td><td>
+<p></p>
+         Id of the VRP.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.VRPResourceManager.VirtualResourcePoolUsage.html">VirtualResourcePoolUsage</a></td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the data cannot be accessed.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the VRP cannot be found.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GetVRPUsage-textarea');expandcontent(this, 'GetVRPUsage-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GetVRPUsage-div">
+<textarea cols="20" rows="10" name="GetVRPUsage-textarea" wrap="off" readonly="1" id="GetVRPUsage-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetVRPUsage" type="vim25:GetVRPUsageRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetVRPUsageResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:VirtualResourcePoolUsage"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="SetManagedByVDC" name="SetManagedByVDC"></a>
+<h1>SetManagedByVDC</h1>
+<p></p>
+         Sets whether a cluster is managed by a Virtual Datacenter. Setting
+   this to true will prevent users from disabling DRS for the cluster.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>cluster</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ManagedEntity.html">ManagedEntity</a></td><td>
+<p></p>
+         MoRef of the cluster.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>status</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         true if the cluster is managed by a Virtual Datacenter
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the cluster cannot be reconfigured due to its state.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the cluster was not found</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('SetManagedByVDC-textarea');expandcontent(this, 'SetManagedByVDC-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="SetManagedByVDC-div">
+<textarea cols="20" rows="10" name="SetManagedByVDC-textarea" wrap="off" readonly="1" id="SetManagedByVDC-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="SetManagedByVDC" type="vim25:SetManagedByVDCRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="SetManagedByVDCResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="UndeployVM" name="UndeployVM"></a>
+<h1>UndeployVM</h1>
+<p></p>
+         Undeploy a VM in given VRP, hub pair.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vrpId</strong></td><td>xsd:string</td><td>
+<p></p>
+         The unique Id of the VRP.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>vm</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         MoRef of the VM.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>cluster</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ManagedEntity.html">ManagedEntity</a></td><td>
+<p></p>
+         MoRef of the hub.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the VM cannot be un-deployed in its current state.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the VRP,VM or the hub cannot be found.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('UndeployVM-textarea');expandcontent(this, 'UndeployVM-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="UndeployVM-div">
+<textarea cols="20" rows="10" name="UndeployVM-textarea" wrap="off" readonly="1" id="UndeployVM-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UndeployVM" type="vim25:UndeployVMRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UndeployVMResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="UpdateVRP" name="UpdateVRP"></a>
+<h1>UpdateVRP</h1>
+<p></p>
+         Updates the configuration of an existing VRP.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Global.VCServer</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VRPResourceManager.html">VRPResourceManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>spec</strong></td><td><a href="vim.VRPResourceManager.VRPEditSpec.html">VRPEditSpec</a></td><td>
+<p></p>
+         The VRP is updated to have this config. If any new hub is
+   added, a child resource pool will be created under it. For removed hubs,
+   their child resource pools will be deleted and all the VMs that were
+   under those resource pools will be moved directly under the hub. If the
+   hub is a cluster, the VMs will be moved to the root resource pool.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InsufficientResourcesFault.html">InsufficientResourcesFault</a></td><td>Thrown if the VRP specification cannot be supported by group of backing hubs. Admission control not guaranteed.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the VRP does not support the operation in its current state.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.NotFound.html">NotFound</a></td><td>Thrown if the VRP id cannot be found.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('UpdateVRP-textarea');expandcontent(this, 'UpdateVRP-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="UpdateVRP-div">
+<textarea cols="20" rows="10" name="UpdateVRP-textarea" wrap="off" readonly="1" id="UpdateVRP-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UpdateVRP" type="vim25:UpdateVRPRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UpdateVRPResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

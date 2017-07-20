@@ -1,0 +1,133 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.host.HostAccessManager.AccessMode" name="vim.host.HostAccessManager.AccessMode"></a>
+<h1>Enum - 
+						HostAccessMode</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.host.HostAccessManager.AccessEntry.html#field_detail">HostAccessControlEntry</a>
+</dd>
+<dt>Parameter to</dt>
+<dd>
+<a href="vim.host.HostAccessManager.html#changeAccessMode">ChangeAccessMode</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<br>
+<h2>Enum Description</h2>
+<p></p>
+         Defines different access modes that a user may have on the host for
+ direct host connections.
+ The assumption here is that when the host is managed by vCenter,
+ we don't need fine-grained control on local user permissions like the
+ interface provided by <a href="vim.AuthorizationManager.html">AuthorizationManager</a>.
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Enum Constants</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><a id="accessAdmin" name="accessAdmin"></a>accessAdmin</td><td>
+      Describes a propagating Admin role on the root inventory object
+ (root folder) on the host, and no other non-Admin role on any other
+ object.
+ <p>
+ The same permissions are needed to login to local or remote
+ shell (ESXiShell or SSH).
+   <br>
+</td>
+</tr>
+<tr class="r0">
+<td><a id="accessNoAccess" name="accessNoAccess"></a>accessNoAccess</td><td>
+      Describes a propagating NoAccess role on the root inventory object
+ (root folder) on the host, and no other roles.
+ <p>
+ Even if the user has another (redundant) NoAccess role on some other
+ inventory object, then the access mode for this user will be
+ classified as <a href="vim.host.HostAccessManager.AccessMode.html#accessOther">accessOther</a>.
+ <p>
+ This mode may be used to restrict a specific user account without
+ restricting the access mode for the group to which the user belongs.
+   <br>
+</td>
+</tr>
+<tr class="r1">
+<td><a id="accessNone" name="accessNone"></a>accessNone</td><td>
+      Indicates that the user has no explicitly defined permissions or roles.
+ This is used when we want to remove all permissions for some user.
+ <p>
+ Note that this is not the same as <a href="vim.host.HostAccessManager.AccessMode.html#accessNoAccess">accessNoAccess</a>.
+   <br>
+</td>
+</tr>
+<tr class="r0">
+<td><a id="accessOther" name="accessOther"></a>accessOther</td><td>
+      Describes a combination of one or more roles/permissions which are
+ none of the above.
+   <br>
+</td>
+</tr>
+<tr class="r1">
+<td><a id="accessReadOnly" name="accessReadOnly"></a>accessReadOnly</td><td>
+      Describes a propagating ReadOnly role on the root inventory object
+ (root folder) on the host, and no other roles.
+ <p>
+ Even if the user has another (redundant) ReadOnly role on some other
+ inventory object, then the access mode for this user will be
+ <a href="vim.host.HostAccessManager.AccessMode.html#accessOther">accessOther</a>.
+   <br>
+</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <simpleType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="HostAccessMode">
+            <restriction base="xsd:string">
+               <enumeration value="accessNone"/>
+               <enumeration value="accessAdmin"/>
+               <enumeration value="accessNoAccess"/>
+               <enumeration value="accessReadOnly"/>
+               <enumeration value="accessOther"/>
+            </restriction>
+         </simpleType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

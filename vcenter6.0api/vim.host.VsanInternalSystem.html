@@ -1,0 +1,1637 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.host.VsanInternalSystem" name="vim.host.VsanInternalSystem"></a>
+<h1>Managed Object -  
+						HostVsanInternalSystem</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.host.ConfigManager.html#field_detail">HostConfigManager</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.host.VsanInternalSystem.CmmdsQuery.html">HostVsanInternalSystemCmmdsQuery</a>, <a href="vim.host.VsanInternalSystem.DeleteVsanObjectsResult.html">HostVsanInternalSystemDeleteVsanObjectsResult</a>, <a href="vim.host.VsanInternalSystem.VsanObjectOperationResult.html">HostVsanInternalSystemVsanObjectOperationResult</a>, <a href="vim.host.VsanInternalSystem.VsanPhysicalDiskDiagnosticsResult.html">HostVsanInternalSystemVsanPhysicalDiskDiagnosticsResult</a>, <a href="vim.host.VsanInternalSystem.NewPolicyBatch.html">VsanNewPolicyBatch</a>, <a href="vim.host.VsanInternalSystem.PolicyChangeBatch.html">VsanPolicyChangeBatch</a>, <a href="vim.host.VsanInternalSystem.PolicySatisfiability.html">VsanPolicySatisfiability</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 5.5</dd>
+<p></p>
+</dl>
+<br>
+<h2>Managed Object Description</h2>
+<p></p>
+         The VsanInternalSystem exposes low level access to CMMDS, as well as draft
+ versions of VSAN object and disk management APIs that are subject to change
+ in future releases. No compatibility is guaranteed on any of the APIs,
+ including their prototype, behavior or result encoding.
+      <a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<br>
+<a id="method_detail" name="method_detail"></a>
+<p class="table-title">Methods</p>
+<table cellspacing="0">
+<tr class="r1">
+<th>
+				          Methods defined in this Managed Object
+				        </th>
+</tr>
+<tr class="r0">
+<td><a href="#abdicateDomOwnership">AbdicateDomOwnership</a>, <a href="#canProvisionObjects">CanProvisionObjects</a>, <a href="#deleteVsanObjects">DeleteVsanObjects</a>, <a href="#getVsanObjExtAttrs">GetVsanObjExtAttrs</a>, <a href="#queryCmmds">QueryCmmds</a>, <a href="#queryObjectsOnPhysicalVsanDisk">QueryObjectsOnPhysicalVsanDisk</a>, <a href="#queryPhysicalVsanDisks">QueryPhysicalVsanDisks</a>, <a href="#querySyncingVsanObjects">QuerySyncingVsanObjects</a>, <a href="#queryVsanObjects">QueryVsanObjects</a>, <a href="#queryVsanObjectUuidsByFilter">QueryVsanObjectUuidsByFilter</a>, <a href="#queryVsanStatistics">QueryVsanStatistics</a>, <a href="#reconfigurationSatisfiable">ReconfigurationSatisfiable</a>, <a href="#reconfigureDomObject">ReconfigureDomObject</a>, <a href="#runVsanPhysicalDiskDiagnostics">RunVsanPhysicalDiskDiagnostics</a>, <a href="#upgradeVsanObjects">UpgradeVsanObjects</a></td>
+</tr>
+</table>
+<br>
+<a id="abdicateDomOwnership" name="abdicateDomOwnership"></a>
+<h1>AbdicateDomOwnership</h1>
+<p></p>
+         Abdicate ownership of DOM objects. The objects must be currently owned
+ by this host. Which host has ownership of an object at a given point in
+ time can be queried from QueryVsanObjects() or QueryCmmds() APIs.
+ Abidcating ownership tears down DOM owner in-memory state. Hosts in the
+ cluster will then compete to become the new owner of the object, similar
+ to a host failure event. There is a short interuption of IO flow while
+ the owner re-election is going on, but it is transparent to any consumers
+ of the object.
+
+ This API is meant as a troubleshooting and debugging tool. It is internal
+ at this point and can be used to resolve issues where DOM owner gets
+ "stuck".
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Host.Config.Storage</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>uuids</strong></td><td>xsd:string[]</td><td>
+<p></p>
+         List of VSAN/DOM object UUIDs.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string[]</td><td>List of UUIDs successfully abdicated.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('AbdicateDomOwnership-textarea');expandcontent(this, 'AbdicateDomOwnership-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="AbdicateDomOwnership-div">
+<textarea cols="20" rows="10" name="AbdicateDomOwnership-textarea" wrap="off" readonly="1" id="AbdicateDomOwnership-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="AbdicateDomOwnership" type="vim25:AbdicateDomOwnershipRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="AbdicateDomOwnershipResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="canProvisionObjects" name="canProvisionObjects"></a>
+<h1>CanProvisionObjects</h1>
+<p></p>
+         Determine if given objects can be provisioned. Determines if the objects
+ of the given size can be provisioned with the given policies.
+ The API is intended to answer the question: can these objects be
+ provisioned with the given policy using the current cluster topology
+ (#hosts and #disks) and does NOT take into account free space on the
+ disk, size of disks, etc. If the objects cannot be provisioned,
+ the API returns the reason for not being able to satisfy the policy.
+ If the objects can be provisioned, the API returns the cost of
+ provisioning objects with this policy. Please note: This API ignores
+ forceProvisioning.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>npbs</strong></td><td><a href="vim.host.VsanInternalSystem.NewPolicyBatch.html">VsanNewPolicyBatch[]</a></td><td>
+<p></p>
+         List of NewPolicyBatch structure with sizes and policies.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>ignoreSatisfiability</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         Optionally populate PolicyCost even though
+        object cannot be provisioned in the current cluster topology.
+      <p></p>
+<B><I>Since </I></B>vSphere API 6.0<br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.host.VsanInternalSystem.PolicySatisfiability.html">VsanPolicySatisfiability[]</a></td><td>List of PolicySatisfiability objects, one for each specified size.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VimFault.html">VimFault</a></td><td></td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('CanProvisionObjects-textarea');expandcontent(this, 'CanProvisionObjects-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="CanProvisionObjects-div">
+<textarea cols="20" rows="10" name="CanProvisionObjects-textarea" wrap="off" readonly="1" id="CanProvisionObjects-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="CanProvisionObjects" type="vim25:CanProvisionObjectsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="CanProvisionObjectsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:VsanPolicySatisfiability" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="deleteVsanObjects" name="deleteVsanObjects"></a>
+<h1>DeleteVsanObjects</h1>
+<p></p>
+         Delete VSAN objects.
+
+ This API is internal and intended for troubleshooting/debugging only.
+ WARNING: This API can be slow because we do IOs to all the objects.
+ This API can be used to delete VSAN objects. DOM won't allow access to
+ objects which have lost quorum. Such objects can be deleted with the
+ optional "force" flag. These objects may however re-appear with quorum
+ if the absent components come back (network partition gets resolved,
+ etc.)
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>uuids</strong></td><td>xsd:string[]</td><td>
+<p></p>
+         List of object UUIDs to be deleted.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>force</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         Optional force delete.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.host.VsanInternalSystem.DeleteVsanObjectsResult.html">HostVsanInternalSystemDeleteVsanObjectsResult[]</a></td><td>List of DeleteVsanObjectsResult.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VimFault.html">VimFault</a></td><td></td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('DeleteVsanObjects-textarea');expandcontent(this, 'DeleteVsanObjects-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="DeleteVsanObjects-div">
+<textarea cols="20" rows="10" name="DeleteVsanObjects-textarea" wrap="off" readonly="1" id="DeleteVsanObjects-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeleteVsanObjects" type="vim25:DeleteVsanObjectsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeleteVsanObjectsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:HostVsanInternalSystemDeleteVsanObjectsResult" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="getVsanObjExtAttrs" name="getVsanObjExtAttrs"></a>
+<h1>GetVsanObjExtAttrs</h1>
+<p></p>
+         Get VSAN object extended attributes.
+
+ This API is internal and intended for troubleshooting/debugging
+ situations in the field. WARNING: This API can be slow because we
+ do IOs (reads) to all the objects. This API can be used to get
+ extended attributes of any object in the VSAN cluster from any host
+ provided the object is accessible from that host. In case of an error,
+ we return a dict with key "Error" for that object.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>uuids</strong></td><td>xsd:string[]</td><td>
+<p></p>
+         List of object UUIDs.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>JSON string with the extended attributes.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VimFault.html">VimFault</a></td><td></td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GetVsanObjExtAttrs-textarea');expandcontent(this, 'GetVsanObjExtAttrs-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GetVsanObjExtAttrs-div">
+<textarea cols="20" rows="10" name="GetVsanObjExtAttrs-textarea" wrap="off" readonly="1" id="GetVsanObjExtAttrs-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetVsanObjExtAttrs" type="vim25:GetVsanObjExtAttrsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GetVsanObjExtAttrsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryCmmds" name="queryCmmds"></a>
+<h1>QueryCmmds</h1>
+<p></p>
+         Query CMMDS directly. The list of given queries is executed and all
+ results are returned in a flat list. No attempt is made to de-dupe
+ results in the case of overlapping query results.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>queries</strong></td><td><a href="vim.host.VsanInternalSystem.CmmdsQuery.html">HostVsanInternalSystemCmmdsQuery[]</a></td><td>
+<p></p>
+         List of CMMDS query specs.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>JSON string with the results</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryCmmds-textarea');expandcontent(this, 'QueryCmmds-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryCmmds-div">
+<textarea cols="20" rows="10" name="QueryCmmds-textarea" wrap="off" readonly="1" id="QueryCmmds-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryCmmds" type="vim25:QueryCmmdsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryCmmdsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryObjectsOnPhysicalVsanDisk" name="queryObjectsOnPhysicalVsanDisk"></a>
+<h1>QueryObjectsOnPhysicalVsanDisk</h1>
+<p></p>
+         Query DOM objects on a given set of physical disks. Finds all DOM objects
+ that have at least one component on the given physical disks. In order to
+ make this API efficient, the output of this API contains the found
+ DOM_OBJECT, and referenced LSOM_OBJECT and DISK entries.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>disks</strong></td><td>xsd:string[]</td><td>
+<p></p>
+         List of VSAN disk UUIDs.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>JSON string with the results</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryObjectsOnPhysicalVsanDisk-textarea');expandcontent(this, 'QueryObjectsOnPhysicalVsanDisk-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryObjectsOnPhysicalVsanDisk-div">
+<textarea cols="20" rows="10" name="QueryObjectsOnPhysicalVsanDisk-textarea" wrap="off" readonly="1" id="QueryObjectsOnPhysicalVsanDisk-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryObjectsOnPhysicalVsanDisk" type="vim25:QueryObjectsOnPhysicalVsanDiskRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryObjectsOnPhysicalVsanDiskResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryPhysicalVsanDisks" name="queryPhysicalVsanDisks"></a>
+<h1>QueryPhysicalVsanDisks</h1>
+<p></p>
+         Query statistics about physical VSAN disks. Using the props parameter the
+ caller can control which properties are returned. Requesting only the
+ required properties is encouraged to reduce server load, response time
+ and client load.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>props</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string[]</td><td>
+<p></p>
+         List of properties to gather. Not specifying a list will
+              fetch all properties.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>JSON string with the results</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryPhysicalVsanDisks-textarea');expandcontent(this, 'QueryPhysicalVsanDisks-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryPhysicalVsanDisks-div">
+<textarea cols="20" rows="10" name="QueryPhysicalVsanDisks-textarea" wrap="off" readonly="1" id="QueryPhysicalVsanDisks-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryPhysicalVsanDisks" type="vim25:QueryPhysicalVsanDisksRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryPhysicalVsanDisksResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="querySyncingVsanObjects" name="querySyncingVsanObjects"></a>
+<h1>QuerySyncingVsanObjects</h1>
+<p></p>
+         Query information about VSAN DOM objects that are currently syncing data.
+ Instead of returning all objects, only such objects are returned that
+ are currently resyncing any stale components or syncing fresh replicas.
+ The API returns the same output format as queryVsanObjects(). It
+ retrieves information about syncing all objects, or retricts the
+ search for syncing objects to the UUID list provided. In order to make
+ this API efficient, the output of this API contains the found
+ DOM_OBJECT, and referenced LSOM_OBJECT and DISK entries.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>uuids</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string[]</td><td>
+<p></p>
+         List of VSAN/DOM object UUIDs to restrict search to.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>JSON string with the results</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QuerySyncingVsanObjects-textarea');expandcontent(this, 'QuerySyncingVsanObjects-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QuerySyncingVsanObjects-div">
+<textarea cols="20" rows="10" name="QuerySyncingVsanObjects-textarea" wrap="off" readonly="1" id="QuerySyncingVsanObjects-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QuerySyncingVsanObjects" type="vim25:QuerySyncingVsanObjectsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QuerySyncingVsanObjectsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryVsanObjects" name="queryVsanObjects"></a>
+<h1>QueryVsanObjects</h1>
+<p></p>
+         Query information about VSAN DOM objects. Retrieves information about the
+ given set of DOM object UUIDs. In order to make this API efficient, the
+ output of this API contains the found DOM_OBJECT, and referenced
+ LSOM_OBJECT and DISK entries.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>uuids</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string[]</td><td>
+<p></p>
+         List of VSAN/DOM object UUIDs.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>JSON string with the results</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryVsanObjects-textarea');expandcontent(this, 'QueryVsanObjects-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryVsanObjects-div">
+<textarea cols="20" rows="10" name="QueryVsanObjects-textarea" wrap="off" readonly="1" id="QueryVsanObjects-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryVsanObjects" type="vim25:QueryVsanObjectsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryVsanObjectsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryVsanObjectUuidsByFilter" name="queryVsanObjectUuidsByFilter"></a>
+<h1>QueryVsanObjectUuidsByFilter</h1>
+<p></p>
+         Query VSAN object UUIDs by filtering conditions.
+
+ The API queries CMMDS by given filtering conditions (initially only for
+ object version) and return object UUID in an array with limited elements
+ count.
+
+ If caller specified the inputs objects UUID, then only these objects will
+ be checked for the filtering conditions, and return ones which satisfy
+ the filtering condition. In this case, the 'limit' parameter will be
+ ignored.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>uuids</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string[]</td><td>
+<p></p>
+         Objects UUID will be checked against the filtering
+              conditions.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>limit</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:int</td><td>
+<p></p>
+         To limit the size of the result set.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>version</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:int</td><td>
+<p></p>
+         Filtering condition 1: object version.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string[]</td><td>String array of object uuids which satisfy the filtering conditions.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VsanFault.html">VsanFault</a></td><td>Thrown for any unexpected failures.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryVsanObjectUuidsByFilter-textarea');expandcontent(this, 'QueryVsanObjectUuidsByFilter-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryVsanObjectUuidsByFilter-div">
+<textarea cols="20" rows="10" name="QueryVsanObjectUuidsByFilter-textarea" wrap="off" readonly="1" id="QueryVsanObjectUuidsByFilter-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryVsanObjectUuidsByFilter" type="vim25:QueryVsanObjectUuidsByFilterRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryVsanObjectUuidsByFilterResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryVsanStatistics" name="queryVsanStatistics"></a>
+<h1>QueryVsanStatistics</h1>
+<p></p>
+         Query VSAN system statistics. This is a low level API that gathers low
+ level statistic counters from the system. The details of the counters
+ remain undocumented and unsupported at this point, and this API remains
+ internal.
+
+ The data for this API call mostly comes from VSI, but also other tools
+ like memstats.
+
+ The caller can control which counters are being retrieved by providing
+ a list of labels. The following labels are current supported:
+ - TBD
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>labels</strong></td><td>xsd:string[]</td><td>
+<p></p>
+         List of labels of counters to retrieve.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>JSON string with the results</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryVsanStatistics-textarea');expandcontent(this, 'QueryVsanStatistics-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryVsanStatistics-div">
+<textarea cols="20" rows="10" name="QueryVsanStatistics-textarea" wrap="off" readonly="1" id="QueryVsanStatistics-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryVsanStatistics" type="vim25:QueryVsanStatisticsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryVsanStatisticsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="reconfigurationSatisfiable" name="reconfigurationSatisfiable"></a>
+<h1>ReconfigurationSatisfiable</h1>
+<p></p>
+         Determine if the given objects can be reconfigured with the given
+ policies. The what-if determination only takes into account
+ the total number of hosts and total number
+ of disks per host. The API is intended to answer the question: is
+ this reconfiguration possible using the current cluster topology
+ (#hosts and #disks) and does NOT take into account free space on the
+ disk, size of disks, etc. If policy is not satisfiable, the API returns
+ the reason for not being able to satisfy the policy. If the policy is
+ satisfiable, the API returns the cost of provisioning objects with the
+ new policy. This cost can be combined with current available free disk
+ space to compute if a particular operation is expected to succeed
+ or fail. Please note: This API ignores forceProvisioning.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>pcbs</strong></td><td><a href="vim.host.VsanInternalSystem.PolicyChangeBatch.html">VsanPolicyChangeBatch[]</a></td><td>
+<p></p>
+         List of PolicyChangeBatch structure with uuids and policies.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>ignoreSatisfiability</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         Optionally populate PolicyCost even though
+        object cannot be reconfigured in the current cluster topology.
+      <p></p>
+<B><I>Since </I></B>vSphere API 6.0<br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.host.VsanInternalSystem.PolicySatisfiability.html">VsanPolicySatisfiability[]</a></td><td>List of PolicySatisfiability objects, one for each specified UUID.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VimFault.html">VimFault</a></td><td></td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ReconfigurationSatisfiable-textarea');expandcontent(this, 'ReconfigurationSatisfiable-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ReconfigurationSatisfiable-div">
+<textarea cols="20" rows="10" name="ReconfigurationSatisfiable-textarea" wrap="off" readonly="1" id="ReconfigurationSatisfiable-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ReconfigurationSatisfiable" type="vim25:ReconfigurationSatisfiableRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ReconfigurationSatisfiableResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:VsanPolicySatisfiability" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="reconfigureDomObject" name="reconfigureDomObject"></a>
+<h1>ReconfigureDomObject</h1>
+<p></p>
+         Reconfigure DOM object. Typically we expect VM centric APIs to be used
+ for setting storage policies, i.e. to use ReconfigVM() to change the
+ policy/profile of a namespace directory or virtual disk. This is a low
+ level API to reconfigure any object known by UUID.
+
+ This API is internal and intended for troubleshooting/debugging
+ situations in the field.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Host.Config.Storage</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>uuid</strong></td><td>xsd:string</td><td>
+<p></p>
+         DOM object UUID.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>policy</strong></td><td>xsd:string</td><td>
+<p></p>
+         VSAN expression formatted policy string.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ReconfigureDomObject-textarea');expandcontent(this, 'ReconfigureDomObject-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ReconfigureDomObject-div">
+<textarea cols="20" rows="10" name="ReconfigureDomObject-textarea" wrap="off" readonly="1" id="ReconfigureDomObject-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ReconfigureDomObject" type="vim25:ReconfigureDomObjectRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ReconfigureDomObjectResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="runVsanPhysicalDiskDiagnostics" name="runVsanPhysicalDiskDiagnostics"></a>
+<h1>RunVsanPhysicalDiskDiagnostics</h1>
+<p></p>
+         Runs diagnostics on VSAN physical disks. This method takes an active
+ approach and creates a minimal and temporary object on each physical
+ MD disk consumed by VSAN across the entire VSAN cluster. The temporary
+ objects are deleted right away upon completion of creation. The result
+ returns a list of all checked MDs, indicating wheather or not there was
+ a problem creating an object on that MD at the given point in time.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>disks</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string[]</td><td>
+<p></p>
+         List of VSAN disk UUIDs. If specified restricts the
+              diagnostics run to VSAN disks present in the provided list.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.host.VsanInternalSystem.VsanPhysicalDiskDiagnosticsResult.html">HostVsanInternalSystemVsanPhysicalDiskDiagnosticsResult[]</a></td><td>A list of result structures. One per checked disk.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('RunVsanPhysicalDiskDiagnostics-textarea');expandcontent(this, 'RunVsanPhysicalDiskDiagnostics-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="RunVsanPhysicalDiskDiagnostics-div">
+<textarea cols="20" rows="10" name="RunVsanPhysicalDiskDiagnostics-textarea" wrap="off" readonly="1" id="RunVsanPhysicalDiskDiagnostics-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="RunVsanPhysicalDiskDiagnostics" type="vim25:RunVsanPhysicalDiskDiagnosticsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="RunVsanPhysicalDiskDiagnosticsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:HostVsanInternalSystemVsanPhysicalDiskDiagnosticsResult" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="upgradeVsanObjects" name="upgradeVsanObjects"></a>
+<h1>UpgradeVsanObjects</h1>
+<p></p>
+         Upgrade VSAN objects version.
+
+ Upgrade a set of objects' version to new one in batch mode.
+ API caller should limit the size of the inputs array, and suggested
+ array size is 500 ~ 1000 initially. (The API will give more realistic
+ suggestion after more experiments, then will apply hard limits in future)
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Host.Config.Storage</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>uuids</strong></td><td>xsd:string[]</td><td>
+<p></p>
+         The array of objects' UUID which will be upgraded.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>newVersion</strong></td><td>xsd:int</td><td>
+<p></p>
+         The new version will be applied to objects.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.host.VsanInternalSystem.VsanObjectOperationResult.html">HostVsanInternalSystemVsanObjectOperationResult[]</a></td><td>Array of VsanObjectOperationResult, the array only contains result for failed objects, such as invalid or not existing UUID, upgrade failure, etc.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VsanFault.html">VsanFault</a></td><td>Thrown for any unexpected failures.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('UpgradeVsanObjects-textarea');expandcontent(this, 'UpgradeVsanObjects-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="UpgradeVsanObjects-div">
+<textarea cols="20" rows="10" name="UpgradeVsanObjects-textarea" wrap="off" readonly="1" id="UpgradeVsanObjects-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UpgradeVsanObjects" type="vim25:UpgradeVsanObjectsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UpgradeVsanObjectsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:HostVsanInternalSystemVsanObjectOperationResult" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

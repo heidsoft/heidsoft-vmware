@@ -1,0 +1,820 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.host.HostAccessManager" name="vim.host.HostAccessManager"></a>
+<h1>Managed Object -  
+						HostAccessManager</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.host.ConfigManager.html#field_detail">HostConfigManager</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.host.HostAccessManager.AccessEntry.html">HostAccessControlEntry</a>, <a href="vim.host.HostAccessManager.AccessMode.html">HostAccessMode</a>, <a href="vim.host.HostAccessManager.LockdownMode.html">HostLockdownMode</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<br>
+<h2>Managed Object Description</h2>
+<p></p>
+         Managed object used to control direct access to the host.
+ <p>
+ This should be used to control users and privileges on the host directly,
+ which are different from the users and privileges defined in vCenter.
+ <p>
+ See <a href="vim.AuthorizationManager.html">AuthorizationManager</a> for more information on permissions.
+      <a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="lockdownMode" name="lockdownMode"></a><strong>lockdownMode</strong><span title="Required Privilege: System.View" class="privilege-ref"> P</span></td><td><a href="vim.host.HostAccessManager.LockdownMode.html">HostLockdownMode</a></td><td>
+<p></p>
+         Current lockdown state of the host.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  System.View</span>
+<br>
+<a id="method_detail" name="method_detail"></a>
+<p class="table-title">Methods</p>
+<table cellspacing="0">
+<tr class="r1">
+<th>
+				          Methods defined in this Managed Object
+				        </th>
+</tr>
+<tr class="r0">
+<td><a href="#changeAccessMode">ChangeAccessMode</a>, <a href="#changeLockdownMode">ChangeLockdownMode</a>, <a href="#queryLockdownExceptions">QueryLockdownExceptions</a>, <a href="#querySystemUsers">QuerySystemUsers</a>, <a href="#retrieveAccessEntries">RetrieveHostAccessControlEntries</a>, <a href="#updateLockdownExceptions">UpdateLockdownExceptions</a>, <a href="#updateSystemUsers">UpdateSystemUsers</a></td>
+</tr>
+</table>
+<br>
+<a id="changeAccessMode" name="changeAccessMode"></a>
+<h1>ChangeAccessMode</h1>
+<p></p>
+         Update the access mode for a user or group.
+ <p>
+ If the host is in lockdown mode, this operation is allowed only on
+ users in the exceptions list - see <a href="vim.host.HostAccessManager.html#queryLockdownExceptions">QueryLockdownExceptions</a>,
+ and trying to change the access mode of other users or groups
+ will fail with SecurityError.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Host.Config.Settings</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.HostAccessManager.html">HostAccessManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>principal</strong></td><td>xsd:string</td><td>
+<p></p>
+         The affected user or group.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>isGroup</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         True if principal refers to a group account,
+                     false otherwise.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>accessMode</strong></td><td><a href="vim.host.HostAccessManager.AccessMode.html">HostAccessMode</a></td><td>
+<p></p>
+         AccessMode to be granted.
+                     AccessMode#accessOther is meaningless and
+                     will result in InvalidArgument exception.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.AuthMinimumAdminPermission.html">AuthMinimumAdminPermission</a></td><td></td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if accessMode is not valid.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.fault.SecurityError.html">SecurityError</a></td><td>Thrown if the host is in lockdown mode and 'principal' is not in the exceptions list.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.UserNotFound.html">UserNotFound</a></td><td>Thrown if the specified user is not found.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ChangeAccessMode-textarea');expandcontent(this, 'ChangeAccessMode-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ChangeAccessMode-div">
+<textarea cols="20" rows="10" name="ChangeAccessMode-textarea" wrap="off" readonly="1" id="ChangeAccessMode-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ChangeAccessMode" type="vim25:ChangeAccessModeRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ChangeAccessModeResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="changeLockdownMode" name="changeLockdownMode"></a>
+<h1>ChangeLockdownMode</h1>
+<p></p>
+         Changes the lockdown state of the ESXi host.
+ <p>
+ This operation will do nothing if the host is already in the desired
+ lockdown state.
+ <p>
+ When the host is in lockdown mode it can be managed only through vCenter
+ and through DCUI (Direct Console User Interface) if the DCUI service is
+ running.
+ This is achieved by removing all permissions on the host, except those
+ of the exception users defined with <a href="vim.host.HostAccessManager.html#updateLockdownExceptions">UpdateLockdownExceptions</a>.
+ <p>
+ In addition, the permissions for users 'dcui', 'vpxuser' and 'vslauser'
+ are always preserved.
+ <p>
+ When lockdown mode is disabled, the system will try to restore all
+ permissions that have been removed when lockdown mode was enabled.
+ It is possible that not all permissions may be restored and this is not
+ an error, e.g. if in the meantime some user or managed object was deleted.
+ <p>
+ It may be possible that after exiting lockdown mode the only permissions
+ on the host will be those of users 'dcui' and 'vpxuser'. This will render the
+ host unmanageable if it is not already managed by vCenter, or if the
+ connection to vCenter is lost. To prevent this, the users in the
+ "DCUI.Access" list will be assigned Admin roles.
+ <p>
+ While the host is in lockdown mode, some operations will fail with
+ SecurityError. This ensures that the conditions for lockdown mode cannot
+ be changed. For example it is allowed to change the access mode only for
+ users in the exceptions list.
+ <p>
+ When the host is in lockdown mode, changing the running state of service
+ DCUI through <a href="vim.host.ServiceSystem.html">HostServiceSystem</a> will also fail with
+ SecurityError accompanied with an appropriate localizeable message.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Host.Config.Settings</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.HostAccessManager.html">HostAccessManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>mode</strong></td><td><a href="vim.host.HostAccessManager.LockdownMode.html">HostLockdownMode</a></td><td>
+<p></p>
+         The new desired lockdown mode.
+               <p>
+               If this is the same as the current lockdown mode state, the
+               operation will silently succeed and nothing will be changed.
+               <p>
+               If this is LockdownMode#lockdownDisabled
+               then lockdown mode will be disabled and the system will
+               start service DCUI if it is not running.
+               <p>
+               If this is LockdownMode#lockdownNormal
+               then lockdown mode will be enabled and the system will
+               start service DCUI if it is not running.
+               <p>
+               If this is LockdownMode#lockdownStrict
+               then lockdown mode will be enabled and the system will
+               stop service DCUI if it is running.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.AuthMinimumAdminPermission.html">AuthMinimumAdminPermission</a></td><td>Thrown if the user invoking the operation is not in the exceptions list - see <a href="vim.host.HostAccessManager.html#queryLockdownExceptions">QueryLockdownExceptions</a>.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.NoPermission.html">NoPermission</a></td><td>Thrown if the current session does not have enough permissions to perform the operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ChangeLockdownMode-textarea');expandcontent(this, 'ChangeLockdownMode-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ChangeLockdownMode-div">
+<textarea cols="20" rows="10" name="ChangeLockdownMode-textarea" wrap="off" readonly="1" id="ChangeLockdownMode-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ChangeLockdownMode" type="vim25:ChangeLockdownModeRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ChangeLockdownModeResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryLockdownExceptions" name="queryLockdownExceptions"></a>
+<h1>QueryLockdownExceptions</h1>
+<p></p>
+         Get the list of users which are exceptions for lockdown mode.
+ See <a href="vim.host.HostAccessManager.html#updateLockdownExceptions">UpdateLockdownExceptions</a>.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.View</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.HostAccessManager.html">HostAccessManager</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string[]</td><td>The list of users which will not lose their permissions when the host enters lockdown mode.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryLockdownExceptions-textarea');expandcontent(this, 'QueryLockdownExceptions-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryLockdownExceptions-div">
+<textarea cols="20" rows="10" name="QueryLockdownExceptions-textarea" wrap="off" readonly="1" id="QueryLockdownExceptions-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryLockdownExceptions" type="vim25:QueryLockdownExceptionsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryLockdownExceptionsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="querySystemUsers" name="querySystemUsers"></a>
+<h1>QuerySystemUsers</h1>
+<p></p>
+         Get the list of local system users.
+ <p>
+ These are special users like 'vpxuser', 'vslauser' and 'dcui',
+ which may be used for authenticating different sub-components of the
+ vSphere system and may be essential for its correct functioning.
+ <p>
+ Usually these users may not be used by human operators to connect
+ directly to the host and the UI may choose to show them only in some
+ "advanced" UI view.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.View</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.HostAccessManager.html">HostAccessManager</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string[]</td><td>The list of local system users.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QuerySystemUsers-textarea');expandcontent(this, 'QuerySystemUsers-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QuerySystemUsers-div">
+<textarea cols="20" rows="10" name="QuerySystemUsers-textarea" wrap="off" readonly="1" id="QuerySystemUsers-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QuerySystemUsers" type="vim25:QuerySystemUsersRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QuerySystemUsersResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="retrieveAccessEntries" name="retrieveAccessEntries"></a>
+<h1>RetrieveHostAccessControlEntries</h1>
+<p></p>
+         Retrieve access entries.
+ Returns a list of AccessEntry objects for each VIM user or group which
+ have explicitly assigned permissions on the host. This means that
+ AccessMode#accessNone will not be present in the result.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.View</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.HostAccessManager.html">HostAccessManager</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.host.HostAccessManager.AccessEntry.html">HostAccessControlEntry[]</a></td><td>A list of AccessEntry objects.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('RetrieveHostAccessControlEntries-textarea');expandcontent(this, 'RetrieveHostAccessControlEntries-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="RetrieveHostAccessControlEntries-div">
+<textarea cols="20" rows="10" name="RetrieveHostAccessControlEntries-textarea" wrap="off" readonly="1" id="RetrieveHostAccessControlEntries-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="RetrieveHostAccessControlEntries" type="vim25:RetrieveHostAccessControlEntriesRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="RetrieveHostAccessControlEntriesResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:HostAccessControlEntry" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="updateLockdownExceptions" name="updateLockdownExceptions"></a>
+<h1>UpdateLockdownExceptions</h1>
+<p></p>
+         Update the list of users which are exceptions for lockdown mode.
+ <p>
+ Usually these are user accounts used by third party solutions and
+ external applications which need to continue to function in lockdown
+ mode. It is not advised to add user accounts used by human operators,
+ because this will compromise the purpose of lockdown mode.
+ <p>
+ Both local and domain users are supported. The format for domain accounts
+ is "DOMAIN\login".
+ <p>
+ When this API is called when the host is in lockdown mode,
+ the behaviour is as follows:
+ <li> if a user is removed from the exceptions list,
+       then the permissions of that user are removed.
+ <li> if a user is added to the exceptions list,
+      then the permissions of that user are restored.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Host.Config.Settings</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.HostAccessManager.html">HostAccessManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>users</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string[]</td><td>
+<p></p>
+         the new list of lockdown mode exceptions.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.AuthMinimumAdminPermission.html">AuthMinimumAdminPermission</a></td><td>Thrown if the user invoking the operation is not present in the new list of exceptions.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.UserNotFound.html">UserNotFound</a></td><td>Thrown if one of the specified users is not found.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('UpdateLockdownExceptions-textarea');expandcontent(this, 'UpdateLockdownExceptions-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="UpdateLockdownExceptions-div">
+<textarea cols="20" rows="10" name="UpdateLockdownExceptions-textarea" wrap="off" readonly="1" id="UpdateLockdownExceptions-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UpdateLockdownExceptions" type="vim25:UpdateLockdownExceptionsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UpdateLockdownExceptionsResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="updateSystemUsers" name="updateSystemUsers"></a>
+<h1>UpdateSystemUsers</h1>
+<p></p>
+         Update the list of local system users.
+ The special users 'dcui', 'vpxuser' and 'vslauser' need not be specified.
+ They are always reported in the list of system users.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Host.Config.Settings</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.HostAccessManager.html">HostAccessManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>users</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string[]</td><td>
+<p></p>
+         the new list of local system users.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if one of the specified user names is not valid, or is in Active Directory domain format.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.UserNotFound.html">UserNotFound</a></td><td>Thrown if one of the specified users is not found.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('UpdateSystemUsers-textarea');expandcontent(this, 'UpdateSystemUsers-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="UpdateSystemUsers-div">
+<textarea cols="20" rows="10" name="UpdateSystemUsers-textarea" wrap="off" readonly="1" id="UpdateSystemUsers-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UpdateSystemUsers" type="vim25:UpdateSystemUsersRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="UpdateSystemUsersResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

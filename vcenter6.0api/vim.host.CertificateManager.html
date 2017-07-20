@@ -1,0 +1,652 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.host.CertificateManager" name="vim.host.CertificateManager"></a>
+<h1>Managed Object -  
+						HostCertificateManager</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.host.ConfigManager.html#field_detail">HostConfigManager</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.host.CertificateManager.CertificateInfo.html">HostCertificateManagerCertificateInfo</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<br>
+<h2>Managed Object Description</h2>
+<p></p>
+         CertificateManager provides an interface for managing the SSL
+  certificates used by the server.
+      <a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="certificateInfo" name="certificateInfo"></a><strong>certificateInfo</strong><span title="Required Privilege: Certificate.Manage" class="privilege-ref"> P</span></td><td><a href="vim.host.CertificateManager.CertificateInfo.html">HostCertificateManagerCertificateInfo</a></td><td>
+<p></p>
+         the CertificateInfo of the Host Certificate.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  Certificate.Manage</span>
+<br>
+<a id="method_detail" name="method_detail"></a>
+<p class="table-title">Methods</p>
+<table cellspacing="0">
+<tr class="r1">
+<th>
+				          Methods defined in this Managed Object
+				        </th>
+</tr>
+<tr class="r0">
+<td><a href="#generateCertificateSigningRequest">GenerateCertificateSigningRequest</a>, <a href="#generateCertificateSigningRequestByDn">GenerateCertificateSigningRequestByDn</a>, <a href="#installServerCertificate">InstallServerCertificate</a>, <a href="#listCACertificateRevocationLists">ListCACertificateRevocationLists</a>, <a href="#listCACertificates">ListCACertificates</a>, <a href="#replaceCACertificatesAndCRLs">ReplaceCACertificatesAndCRLs</a></td>
+</tr>
+</table>
+<br>
+<a id="generateCertificateSigningRequest" name="generateCertificateSigningRequest"></a>
+<h1>GenerateCertificateSigningRequest</h1>
+<p></p>
+         Requests the server to generate a certificate-signing
+  request (CSR) for itself. The CSR is then typically
+  provided to a Certificate Authority to sign and issue
+  the SSL certificate for the server. Use <a href="vim.host.CertificateManager.html#installServerCertificate">InstallServerCertificate</a>
+  to install this certificate.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Certificate.Manage</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.CertificateManager.html">HostCertificateManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>useIpAddressAsCommonName</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         if true, use host's
+           management IP address as CN in the CSR;
+           otherwise use host's FQDN.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>CSR in PEM format</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.HostConfigFault.html">HostConfigFault</a></td><td>Thrown if there's a problem generating the CSR.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GenerateCertificateSigningRequest-textarea');expandcontent(this, 'GenerateCertificateSigningRequest-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GenerateCertificateSigningRequest-div">
+<textarea cols="20" rows="10" name="GenerateCertificateSigningRequest-textarea" wrap="off" readonly="1" id="GenerateCertificateSigningRequest-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GenerateCertificateSigningRequest" type="vim25:GenerateCertificateSigningRequestRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GenerateCertificateSigningRequestResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="generateCertificateSigningRequestByDn" name="generateCertificateSigningRequestByDn"></a>
+<h1>GenerateCertificateSigningRequestByDn</h1>
+<p></p>
+         Requests the server to generate a certificate-signing
+  request (CSR) for itself. Alternative version similar to <a href="vim.host.CertificateManager.html#generateCertificateSigningRequest">GenerateCertificateSigningRequest</a>
+  but takes a Distinguished Name (DN) as a parameter.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Certificate.Manage</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.CertificateManager.html">HostCertificateManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>distinguishedName</strong></td><td>xsd:string</td><td>
+<p></p>
+         DN to be used as subject in CSR.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string</td><td>CSR in PEM format</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.HostConfigFault.html">HostConfigFault</a></td><td>Thrown if there's a problem generating the CSR.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('GenerateCertificateSigningRequestByDn-textarea');expandcontent(this, 'GenerateCertificateSigningRequestByDn-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="GenerateCertificateSigningRequestByDn-div">
+<textarea cols="20" rows="10" name="GenerateCertificateSigningRequestByDn-textarea" wrap="off" readonly="1" id="GenerateCertificateSigningRequestByDn-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GenerateCertificateSigningRequestByDn" type="vim25:GenerateCertificateSigningRequestByDnRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="GenerateCertificateSigningRequestByDnResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="installServerCertificate" name="installServerCertificate"></a>
+<h1>InstallServerCertificate</h1>
+<p></p>
+         Installs a given SSL certificate on the server.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Certificate.Manage</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.CertificateManager.html">HostCertificateManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>cert</strong></td><td>xsd:string</td><td>
+<p></p>
+         SSL certificate in PEM format
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.HostConfigFault.html">HostConfigFault</a></td><td>Thrown if there's a problem generating the CSR.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('InstallServerCertificate-textarea');expandcontent(this, 'InstallServerCertificate-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="InstallServerCertificate-div">
+<textarea cols="20" rows="10" name="InstallServerCertificate-textarea" wrap="off" readonly="1" id="InstallServerCertificate-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="InstallServerCertificate" type="vim25:InstallServerCertificateRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="InstallServerCertificateResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="listCACertificateRevocationLists" name="listCACertificateRevocationLists"></a>
+<h1>ListCACertificateRevocationLists</h1>
+<p></p>
+         Fetches the SSL CRLs of Certificate Authorities that are trusted.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Certificate.Manage</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.CertificateManager.html">HostCertificateManager</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string[]</td><td>SSL CRLs of trusted CAs in PEM format</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.HostConfigFault.html">HostConfigFault</a></td><td>Thrown if there's a problem with the certificate store.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ListCACertificateRevocationLists-textarea');expandcontent(this, 'ListCACertificateRevocationLists-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ListCACertificateRevocationLists-div">
+<textarea cols="20" rows="10" name="ListCACertificateRevocationLists-textarea" wrap="off" readonly="1" id="ListCACertificateRevocationLists-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListCACertificateRevocationLists" type="vim25:ListCACertificateRevocationListsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListCACertificateRevocationListsResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="listCACertificates" name="listCACertificates"></a>
+<h1>ListCACertificates</h1>
+<p></p>
+         Fetches the SSL certificates of Certificate Authorities
+  that are trusted.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Certificate.Manage</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.CertificateManager.html">HostCertificateManager</a>
+						used to make the method call.
+					</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td>xsd:string[]</td><td>SSL certificates of trusted CAs in PEM format</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.HostConfigFault.html">HostConfigFault</a></td><td>Thrown if there's a problem with the certificate store.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ListCACertificates-textarea');expandcontent(this, 'ListCACertificates-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ListCACertificates-div">
+<textarea cols="20" rows="10" name="ListCACertificates-textarea" wrap="off" readonly="1" id="ListCACertificates-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListCACertificates" type="vim25:ListCACertificatesRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListCACertificatesResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="replaceCACertificatesAndCRLs" name="replaceCACertificatesAndCRLs"></a>
+<h1>ReplaceCACertificatesAndCRLs</h1>
+<p></p>
+         Replaces the trusted Certificate Authority (CA)
+  certificates and Certification Revocation List (CRL)
+  used by the server with the provided values.
+  These determine whether the server can verify
+  the identity of an external entity.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>Certificate.Manage</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.host.CertificateManager.html">HostCertificateManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>caCert</strong></td><td>xsd:string[]</td><td>
+<p></p>
+         List of SSL certificates, in PEM format,
+          of all CAs that should be trusted
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>caCrl</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string[]</td><td>
+<p></p>
+         List of SSL CRLs, in PEM format,
+          issued by trusted CAs from the above list
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.HostConfigFault.html">HostConfigFault</a></td><td>Thrown if there's a problem if there's a problem with the input certificates or CRLs.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ReplaceCACertificatesAndCRLs-textarea');expandcontent(this, 'ReplaceCACertificatesAndCRLs-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ReplaceCACertificatesAndCRLs-div">
+<textarea cols="20" rows="10" name="ReplaceCACertificatesAndCRLs-textarea" wrap="off" readonly="1" id="ReplaceCACertificatesAndCRLs-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ReplaceCACertificatesAndCRLs" type="vim25:ReplaceCACertificatesAndCRLsRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ReplaceCACertificatesAndCRLsResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

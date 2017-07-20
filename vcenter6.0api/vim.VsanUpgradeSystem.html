@@ -1,0 +1,433 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.VsanUpgradeSystem" name="vim.VsanUpgradeSystem"></a>
+<h1>Managed Object -  
+						VsanUpgradeSystem</h1>
+<dl>
+<dt>See also</dt>
+<dd>
+<a href="vim.ClusterComputeResource.html">ClusterComputeResource</a>, <a href="vim.HostSystem.html">HostSystem</a>, <a href="vim.VsanUpgradeSystem.PreflightCheckResult.html">VsanUpgradeSystemPreflightCheckResult</a>, <a href="vim.VsanUpgradeSystem.UpgradeStatus.html">VsanUpgradeSystemUpgradeStatus</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<br>
+<h2>Managed Object Description</h2>
+<p></p>
+         VSAN Upgrade System. Used to perform and monitor VSAN on-disk format
+ upgrades.
+      <a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<br>
+<a id="method_detail" name="method_detail"></a>
+<p class="table-title">Methods</p>
+<table cellspacing="0">
+<tr class="r1">
+<th>
+				          Methods defined in this Managed Object
+				        </th>
+</tr>
+<tr class="r0">
+<td><a href="#performUpgrade">PerformVsanUpgrade_Task</a>, <a href="#performUpgradePreflightCheck">PerformVsanUpgradePreflightCheck</a>, <a href="#queryUpgradeStatus">QueryVsanUpgradeStatus</a></td>
+</tr>
+</table>
+<br>
+<a id="performUpgrade" name="performUpgrade"></a>
+<h1>PerformVsanUpgrade_Task</h1>
+<p></p>
+         Start VSAN on-disk format upgrade process on a particular cluster.
+
+ In order to perform this on-disk format upgrade, the upgrade process
+ will perform a rolling evacuation/remove/re-add operation to accomplish
+ the upgrade. In other words, one disk group at a time, it will evacuate
+ the data from the disk group, then remove the old format from the now
+ empty disk group, then reformat the disk group with the new format.
+ Once all disk groups have been upgraded, and if the performObjectUpgrade
+ parameter is set, the VSAN object version is also upgraded. Before
+ the object version is upgraded, it is possible to downgrade the cluster
+ by passing the downgradeFormat parameter. Once objects are of the new
+ object version however, downgrade (and thus rollback) are no longer
+ possible. The new object version is required to allow objects to benefit
+ from new VSAN features.
+
+ This is a long running (hours to days) task. In addition to normal
+ task progress reporting, use the queryUpgradeStatus() API which allows
+ to retrieve in-depth status updates from the upgrade process. In there
+ will be a detailed log of every operation the upgrade process has taken
+ or issues it encountered. Some are simple log messages, others refer
+ to operations like evacuating a disk group. For such log entries, the
+ task object of the evacuation task is provided to allow "sub-task"
+ tracking.
+
+ Before starting, the upgrade process will perform a pre-flight check,
+ and abort if any of the pre-conditions are not met. See<br>See <a href="vim.VsanUpgradeSystem.html#performUpgradePreflightCheck">PerformVsanUpgradePreflightCheck</a><br>
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VsanUpgradeSystem.html">VsanUpgradeSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>cluster</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ClusterComputeResource.html">ClusterComputeResource</a></td><td>
+<p></p>
+         The cluster to be upgraded<br>See <a href="vim.VsanUpgradeSystem.html#performUpgradePreflightCheck">PerformVsanUpgradePreflightCheck</a><br>
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>performObjectUpgrade</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         After all disk groups have been updated, also
+                             upgrade all objects. Once started, rollback
+                             of the on disk format is no longer possible.
+                             Object upgrade unlocks new VSAN features.<br>See <a href="vim.VsanUpgradeSystem.html#performUpgradePreflightCheck">PerformVsanUpgradePreflightCheck</a><br>
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>downgradeFormat</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         Perform a on-disk format downgrade instead of
+                        upgrade. Only possible if no upgraded objects exist.<br>See <a href="vim.VsanUpgradeSystem.html#performUpgradePreflightCheck">PerformVsanUpgradePreflightCheck</a><br>
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>allowReducedRedundancy</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         Removes the need for one disk group worth of
+                               free space, by allowing reduced redundancy
+                               during disk upgrade.<br>See <a href="vim.VsanUpgradeSystem.html#performUpgradePreflightCheck">PerformVsanUpgradePreflightCheck</a><br>
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>excludeHosts</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference[]</a>
+<br> to a
+                  <a href="vim.HostSystem.html">HostSystem[]</a></td><td>
+<p></p>
+         Internal debug option meant for functional testing
+                     of VSAN upgrades. Skips upgrade on certain hosts and
+                     implies performObjectUpgrade being false. Should not
+                     be used by customers.<br>See <a href="vim.VsanUpgradeSystem.html#performUpgradePreflightCheck">PerformVsanUpgradePreflightCheck</a><br>
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.Task.html">Task</a></td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VsanFault.html">VsanFault</a></td><td><br>See <a href="vim.VsanUpgradeSystem.html#performUpgradePreflightCheck">PerformVsanUpgradePreflightCheck</a><br></td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<br>
+<br>
+<a id="performUpgradePreflightCheck" name="performUpgradePreflightCheck"></a>
+<h1>PerformVsanUpgradePreflightCheck</h1>
+<p></p>
+         Perform an upgrade pre-flight check on a cluster.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VsanUpgradeSystem.html">VsanUpgradeSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>cluster</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ClusterComputeResource.html">ClusterComputeResource</a></td><td>
+<p></p>
+         The cluster for which to perform the check.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>downgradeFormat</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         Intend to perform a on-disk format downgrade instead
+                        of upgrade. Adds additional checks.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.VsanUpgradeSystem.PreflightCheckResult.html">VsanUpgradeSystemPreflightCheckResult</a></td><td>Pre-flight check result.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VsanFault.html">VsanFault</a></td><td></td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('PerformVsanUpgradePreflightCheck-textarea');expandcontent(this, 'PerformVsanUpgradePreflightCheck-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="PerformVsanUpgradePreflightCheck-div">
+<textarea cols="20" rows="10" name="PerformVsanUpgradePreflightCheck-textarea" wrap="off" readonly="1" id="PerformVsanUpgradePreflightCheck-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="PerformVsanUpgradePreflightCheck" type="vim25:PerformVsanUpgradePreflightCheckRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="PerformVsanUpgradePreflightCheckResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:VsanUpgradeSystemPreflightCheckResult"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="queryUpgradeStatus" name="queryUpgradeStatus"></a>
+<h1>QueryVsanUpgradeStatus</h1>
+<p></p>
+         Retrieve the latest status of a running, or the previously completed,
+ upgrade process. Information about previous upgrade runs are not
+ always, e.g. when VC gets restarted.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>System.Read</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.VsanUpgradeSystem.html">VsanUpgradeSystem</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>cluster</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.ClusterComputeResource.html">ClusterComputeResource</a></td><td>
+<p></p>
+         The cluster for which to retrieve the upgrade status.
+      <br>
+</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.VsanUpgradeSystem.UpgradeStatus.html">VsanUpgradeSystemUpgradeStatus</a></td><td>Status</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.VsanFault.html">VsanFault</a></td><td></td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('QueryVsanUpgradeStatus-textarea');expandcontent(this, 'QueryVsanUpgradeStatus-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="QueryVsanUpgradeStatus-div">
+<textarea cols="20" rows="10" name="QueryVsanUpgradeStatus-textarea" wrap="off" readonly="1" id="QueryVsanUpgradeStatus-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryVsanUpgradeStatus" type="vim25:QueryVsanUpgradeStatusRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="QueryVsanUpgradeStatusResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:VsanUpgradeSystemUpgradeStatus"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.storageDrs.AutomationConfig" name="vim.storageDrs.AutomationConfig"></a>
+<h1>Data Object - StorageDrsAutomationConfig</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.storageDrs.PodConfigInfo.html#field_detail">StorageDrsPodConfigInfo</a>, <a href="vim.storageDrs.PodConfigSpec.html#field_detail">StorageDrsPodConfigSpec</a>
+</dd>
+<dt>Extends</dt>
+<dd>
+<a href="vmodl.DynamicData.html">DynamicData</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<H2>Data Object 
+                  Description</H2>
+<p></p>
+         Storage DRS fine grain automation controls
+  <p>
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="ioLoadBalanceAutomationMode" name="ioLoadBalanceAutomationMode"></a><strong>ioLoadBalanceAutomationMode</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Specifies the behavior of Storage DRS when it generates
+ recommendations for correcting I/O load imbalance in a datastore
+ cluster. See <a href="vim.storageDrs.PodConfigInfo.html">StorageDrsPodConfigInfo</a>. If specified, this option
+ overrides the datastore cluster level automation behavior defined in the
+ <a href="vim.storageDrs.PodConfigInfo.html">StorageDrsPodConfigInfo</a>.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="policyEnforcementAutomationMode" name="policyEnforcementAutomationMode"></a><strong>policyEnforcementAutomationMode</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Specifies the behavior of Storage DRS when it generates
+ recommendations for correcting storage and Vm policy violations
+ in a datastore cluster. See <a href="vim.storageDrs.PodConfigInfo.Behavior.html">StorageDrsPodConfigInfoBehavior</a>. If
+ specified, this option overrides the datastore cluster level
+ automation behavior defined in the <a href="vim.storageDrs.PodConfigInfo.html">StorageDrsPodConfigInfo</a> for
+ recommendations aimed at fixing storage policy violations.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="ruleEnforcementAutomationMode" name="ruleEnforcementAutomationMode"></a><strong>ruleEnforcementAutomationMode</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Specifies the behavior of Storage DRS when it generates
+ recommendations for correcting affinity rule violations in a
+ datastore cluster. See <a href="vim.storageDrs.PodConfigInfo.Behavior.html">StorageDrsPodConfigInfoBehavior</a>. If
+ specified, this option overrides the datastore cluster level
+ automation behavior defined in the <a href="vim.storageDrs.PodConfigInfo.html">StorageDrsPodConfigInfo</a> for
+ recommendations aimed at fixing rule violations.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="spaceLoadBalanceAutomationMode" name="spaceLoadBalanceAutomationMode"></a><strong>spaceLoadBalanceAutomationMode</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Specifies the behavior of Storage DRS when it generates
+ recommendations for correcting space load imbalance in a
+ datastore cluster. See <a href="vim.storageDrs.PodConfigInfo.html">StorageDrsPodConfigInfo</a>. If specified, this option
+ overrides the datastore cluster level automation behavior defined in the
+ <a href="vim.storageDrs.PodConfigInfo.html">StorageDrsPodConfigInfo</a>.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="vmEvacuationAutomationMode" name="vmEvacuationAutomationMode"></a><strong>vmEvacuationAutomationMode</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Specifies the behavior of Storage DRS when it generates
+ recommendations for datastore evacuations in a datastore
+ cluster. See <a href="vim.storageDrs.PodConfigInfo.Behavior.html">StorageDrsPodConfigInfoBehavior</a>. If specified, this
+ option overrides the datastore cluster level automation behavior
+ defined in the <a href="vim.storageDrs.PodConfigInfo.html">StorageDrsPodConfigInfo</a> for recommendations aimed at
+ evacuating Vms from a datastore.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td colspan="3">
+						Properties inherited from <a href="vmodl.DynamicData.html">DynamicData</a></td>
+</tr>
+<tr class="r1">
+<td colspan="3">None</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set</span>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="StorageDrsAutomationConfig">
+            <complexContent>
+               <extension base="vim25:DynamicData">
+                  <sequence>
+                     <element name="spaceLoadBalanceAutomationMode" type="xsd:string" minOccurs="0"/>
+                     <element name="ioLoadBalanceAutomationMode" type="xsd:string" minOccurs="0"/>
+                     <element name="ruleEnforcementAutomationMode" type="xsd:string" minOccurs="0"/>
+                     <element name="policyEnforcementAutomationMode" type="xsd:string" minOccurs="0"/>
+                     <element name="vmEvacuationAutomationMode" type="xsd:string" minOccurs="0"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

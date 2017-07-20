@@ -1,0 +1,212 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.vm.ReplicationConfigSpec" name="vim.vm.ReplicationConfigSpec"></a>
+<h1>Data Object - ReplicationConfigSpec</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.vm.ConfigInfo.html#field_detail">VirtualMachineConfigInfo</a>, <a href="vim.vm.ConfigSpec.html#field_detail">VirtualMachineConfigSpec</a>
+</dd>
+<dt>Extends</dt>
+<dd>
+<a href="vmodl.DynamicData.html">DynamicData</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.vm.ReplicationConfigSpec.DiskSettings.html">ReplicationInfoDiskSettings</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<H2>Data Object 
+                  Description</H2>
+<p></p>
+         The ReplicationConfigSpec object type encapsulates the replication
+ configuration parameters for a virtual machine. It consists of two
+ parts: 1) a set of virtual machine-wide replication properties; 2)
+ a set of properties per replicated virtual disk. ReplicationSetting
+ is passed as an argument for initial replication configuration
+ (@see vim.VirtualMachine.EnableReplication) as well as for
+ re-configuration of a replicated VM's properties (@see
+ vim.VirtualMachine.ReconfigureReplication). It is also returned to
+ callers through a "get" interface (@see
+ vim.VirtualMachine.ReplicationConfig).
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="destination" name="destination"></a><strong>destination</strong></td><td>xsd:string</td><td>
+<p></p>
+         The IP address of the HBR Server in the secondary site
+ where this VM is replicated to.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="disk" name="disk"></a><strong>disk</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.vm.ReplicationConfigSpec.DiskSettings.html">ReplicationInfoDiskSettings[]</a></td><td>
+<p></p>
+         The set of the disks of this VM that are configured for
+ replication.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="generation" name="generation"></a><strong>generation</strong></td><td>xsd:long</td><td>
+<p></p>
+         A generation number (>=0) that reflects the "freshness" of the
+ ReplicationConfigSpec on which a re-configuration is based. The
+ generation number is used to detect and disallow concurrent
+ updates to a VM's replication settings.
+
+ For initial replication enablement, generation = 0.  The
+ replication settings of every replication re-configuration
+ operation must reflect the latest generation number known to the
+ caller.  It takes an explicit call to get the latest replication
+ settings to find out what the latest generation number is. The
+ update algorithm of the generation number is opaque to the
+ caller; e.g., the caller cannot assume that the generation
+ numbers are incremented by one every time replication is
+ (re)configured, not even that they are changing monotonically.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="netCompressionEnabled" name="netCompressionEnabled"></a><strong>netCompressionEnabled</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         Flag that indicates whether or not compression should
+ be used when sending traffic over the network.
+
+ The primary will negotiate the best compression with
+ the server on the secondary if this is enabled.
+      <p></p>
+<B><I>Since </I></B>vSphere API 6.0<br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="oppUpdatesEnabled" name="oppUpdatesEnabled"></a><strong>oppUpdatesEnabled</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         Flag that indicates whether or not to perform opportunistic
+ updates in-between consistent replicas.
+
+ TODO: This may be removed from the final product.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="paused" name="paused"></a><strong>paused</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         Flag that indicates whether or not the vm or group has been paused for
+  replication.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="port" name="port"></a><strong>port</strong></td><td>xsd:int</td><td>
+<p></p>
+         The port on the HBR Server in the secondary site where this VM
+ is replicated to.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="quiesceGuestEnabled" name="quiesceGuestEnabled"></a><strong>quiesceGuestEnabled</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         Flag that indicates whether or not to quiesce the file system or
+ applications in the guest OS before a consistent replica is
+ created.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="rpo" name="rpo"></a><strong>rpo</strong></td><td>xsd:long</td><td>
+<p></p>
+         The Recovery Point Objective specified for this VM, in minutes.
+ Currently, valid values are in the range of 1 minute to 1440
+ minutes (24 hours).
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="vmReplicationId" name="vmReplicationId"></a><strong>vmReplicationId</strong></td><td>xsd:string</td><td>
+<p></p>
+         An opaque identifier that uniquely identifies a replicated VM
+ between primary and secondary sites.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td colspan="3">
+						Properties inherited from <a href="vmodl.DynamicData.html">DynamicData</a></td>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set</span>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ReplicationConfigSpec">
+            <complexContent>
+               <extension base="vim25:DynamicData">
+                  <sequence>
+                     <element name="generation" type="xsd:long"/>
+                     <element name="vmReplicationId" type="xsd:string"/>
+                     <element name="destination" type="xsd:string"/>
+                     <element name="port" type="xsd:int"/>
+                     <element name="rpo" type="xsd:long"/>
+                     <element name="quiesceGuestEnabled" type="xsd:boolean"/>
+                     <element name="paused" type="xsd:boolean"/>
+                     <element name="oppUpdatesEnabled" type="xsd:boolean"/>
+                     <element name="netCompressionEnabled" type="xsd:boolean" minOccurs="0"/>
+                     <element name="disk" type="vim25:ReplicationInfoDiskSettings" minOccurs="0" maxOccurs="unbounded"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.cluster.EVCManager.EVCState" name="vim.cluster.EVCManager.EVCState"></a>
+<h1>Data Object - ClusterEVCManagerEVCState</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.cluster.EVCManager.html#field_detail">ClusterEVCManager</a>
+</dd>
+<dt>Extends</dt>
+<dd>
+<a href="vmodl.DynamicData.html">DynamicData</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.EVCMode.html">EVCMode</a>, <a href="vim.host.CpuIdInfo.html">HostCpuIdInfo</a>, <a href="vim.host.FeatureCapability.html">HostFeatureCapability</a>, <a href="vim.host.FeatureMask.html">HostFeatureMask</a>, <a href="vim.vm.FeatureRequirement.html">VirtualMachineFeatureRequirement</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<H2>Data Object 
+                  Description</H2>
+<p></p>
+<p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="currentEVCModeKey" name="currentEVCModeKey"></a><strong>currentEVCModeKey</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         If unset, then EVC is disabled. If set, then EVC is enabled, and the
+  value references an EVC mode described in one of the elements of the
+  <a href="vim.cluster.EVCManager.EVCState.html#supportedEVCMode">supportedEVCMode</a> array property. The EVC mode determines the
+  set of guaranteed clusterwide CPU features. While EVC is enabled, CPU
+  compatibility issues will not block any VMotion within the cluster
+  (unless some VM is specifically configured to do different CPUID
+  overrides).
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="featureCapability" name="featureCapability"></a><strong>featureCapability</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.host.FeatureCapability.html">HostFeatureCapability[]</a></td><td>
+<p></p>
+         When EVC is enabled, this array contains the feature capabilities that
+ are guaranteed (by EVC) to be the same among all hosts in the cluster.
+ This property has the same value as the featureCapability property
+ of the configured EVC mode. On any host in the EVC cluster, the feature
+ capabilities either naturally match these values because of the CPU
+ hardware, or else feature masks are used to mask out differences and
+ enforce a match. This array is empty when EVC is disabled.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="featureMask" name="featureMask"></a><strong>featureMask</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.host.FeatureMask.html">HostFeatureMask[]</a></td><td>
+<p></p>
+         The masks (modifications to a host's feature capabilities) that limit a
+ host's capabilities to that of the EVC mode baseline.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="featureRequirement" name="featureRequirement"></a><strong>featureRequirement</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.vm.FeatureRequirement.html">VirtualMachineFeatureRequirement[]</a></td><td>
+<p></p>
+         The conditions that must be true of a host's feature capabilities in order
+ for the host to meet the minimum requirements of the EVC mode baseline.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="guaranteedCPUFeatures" name="guaranteedCPUFeatures"></a><strong>guaranteedCPUFeatures</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.host.CpuIdInfo.html">HostCpuIdInfo[]</a></td><td>
+<p></p>
+         When EVC is enabled, this array contains the CPU feature bits that are
+ guaranteed (by EVC) to be the same among all hosts in the cluster.
+ This property has the same value as the guaranteedCPUFeatures property
+ of the configured EVC mode. On any host in the EVC cluster, the CPU
+ features either naturally match these values because of the CPU
+ hardware, or else CPU feature override is used to mask out differences
+ and enforce a match. This array is empty when EVC is disabled.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="supportedEVCMode" name="supportedEVCMode"></a><strong>supportedEVCMode</strong></td><td><a href="vim.EVCMode.html">EVCMode[]</a></td><td>
+<p></p>
+         All supported EVC modes. Identical to
+ <a href="vim.Capability.html#supportedEVCMode">supportedEVCMode</a>.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td colspan="3">
+						Properties inherited from <a href="vmodl.DynamicData.html">DynamicData</a></td>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set</span>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ClusterEVCManagerEVCState">
+            <complexContent>
+               <extension base="vim25:DynamicData">
+                  <sequence>
+                     <element name="supportedEVCMode" type="vim25:EVCMode" maxOccurs="unbounded"/>
+                     <element name="currentEVCModeKey" type="xsd:string" minOccurs="0"/>
+                     <element name="guaranteedCPUFeatures" type="vim25:HostCpuIdInfo" minOccurs="0" maxOccurs="unbounded"/>
+                     <element name="featureCapability" type="vim25:HostFeatureCapability" minOccurs="0" maxOccurs="unbounded"/>
+                     <element name="featureMask" type="vim25:HostFeatureMask" minOccurs="0" maxOccurs="unbounded"/>
+                     <element name="featureRequirement" type="vim25:VirtualMachineFeatureRequirement" minOccurs="0" maxOccurs="unbounded"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

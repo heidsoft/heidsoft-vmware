@@ -1,0 +1,1009 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.vm.guest.WindowsRegistryManager" name="vim.vm.guest.WindowsRegistryManager"></a>
+<h1>Managed Object -  
+						GuestWindowsRegistryManager</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.vm.guest.GuestOperationsManager.html#field_detail">GuestOperationsManager</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a>, <a href="vim.vm.guest.WindowsRegistryManager.RegistryKeyName.html">GuestRegKeyNameSpec</a>, <a href="vim.vm.guest.WindowsRegistryManager.RegistryKeyRecord.html">GuestRegKeyRecordSpec</a>, <a href="vim.vm.guest.WindowsRegistryManager.RegistryValueName.html">GuestRegValueNameSpec</a>, <a href="vim.vm.guest.WindowsRegistryManager.RegistryValue.html">GuestRegValueSpec</a>, <a href="vim.VirtualMachine.html">VirtualMachine</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<br>
+<h2>Managed Object Description</h2>
+<p></p>
+         WindowsRegistryManager is the managed object that provides APIs
+ to manipulate the Registry in a Windows guest OS.
+      <a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<br>
+<a id="method_detail" name="method_detail"></a>
+<p class="table-title">Methods</p>
+<table cellspacing="0">
+<tr class="r1">
+<th>
+				          Methods defined in this Managed Object
+				        </th>
+</tr>
+<tr class="r0">
+<td><a href="#createRegistryKey">CreateRegistryKeyInGuest</a>, <a href="#deleteRegistryKey">DeleteRegistryKeyInGuest</a>, <a href="#deleteRegistryValue">DeleteRegistryValueInGuest</a>, <a href="#listRegistryKeys">ListRegistryKeysInGuest</a>, <a href="#listRegistryValues">ListRegistryValuesInGuest</a>, <a href="#setRegistryValue">SetRegistryValueInGuest</a></td>
+</tr>
+</table>
+<br>
+<a id="createRegistryKey" name="createRegistryKey"></a>
+<h1>CreateRegistryKeyInGuest</h1>
+<p></p>
+         Create a registry key.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.WindowsRegistryManager.html">GuestWindowsRegistryManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.Modify" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>keyName</strong></td><td><a href="vim.vm.guest.WindowsRegistryManager.RegistryKeyName.html">GuestRegKeyNameSpec</a></td><td>
+<p></p>
+         The path to the registry key to be created.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>isVolatile</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         If true, the key is created in memory and is not
+                   preserved across system reboot. Otherwise, it shall
+                   persist in the file system.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>classType</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         User defined class type for this key. May be omitted.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span><span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.Modify</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if the program path cannot be run because the guest authentication will not allow the operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestRegistryKeyAlreadyExists.html">GuestRegistryKeyAlreadyExists</a></td><td>Thrown if the registry key already exists.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestRegistryKeyInvalid.html">GuestRegistryKeyInvalid</a></td><td>Thrown if the registry key is not valid. Check the HKEY Root specified.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestRegistryKeyParentVolatile.html">GuestRegistryKeyParentVolatile</a></td><td>Thrown if trying to create a non-volatile registry subkey under a volatile registry parent key.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('CreateRegistryKeyInGuest-textarea');expandcontent(this, 'CreateRegistryKeyInGuest-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="CreateRegistryKeyInGuest-div">
+<textarea cols="20" rows="10" name="CreateRegistryKeyInGuest-textarea" wrap="off" readonly="1" id="CreateRegistryKeyInGuest-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="CreateRegistryKeyInGuest" type="vim25:CreateRegistryKeyInGuestRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="CreateRegistryKeyInGuestResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="deleteRegistryKey" name="deleteRegistryKey"></a>
+<h1>DeleteRegistryKeyInGuest</h1>
+<p></p>
+         Delete a registry key.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.WindowsRegistryManager.html">GuestWindowsRegistryManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.Modify" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>keyName</strong></td><td><a href="vim.vm.guest.WindowsRegistryManager.RegistryKeyName.html">GuestRegKeyNameSpec</a></td><td>
+<p></p>
+         The path to the registry key to be deleted.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>recursive</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         If true, the key is deleted along with any subkeys (if
+                  present). Otherwise, it shall only delete the key if it
+                  has no subkeys.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.Modify</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if the program path cannot be run because the guest authentication will not allow the operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestRegistryKeyHasSubkeys.html">GuestRegistryKeyHasSubkeys</a></td><td>Thrown if the parameter recursive is false and the key has subkeys.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestRegistryKeyInvalid.html">GuestRegistryKeyInvalid</a></td><td>Thrown if the registry key is not valid. Check the HKEY Root specified.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('DeleteRegistryKeyInGuest-textarea');expandcontent(this, 'DeleteRegistryKeyInGuest-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="DeleteRegistryKeyInGuest-div">
+<textarea cols="20" rows="10" name="DeleteRegistryKeyInGuest-textarea" wrap="off" readonly="1" id="DeleteRegistryKeyInGuest-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeleteRegistryKeyInGuest" type="vim25:DeleteRegistryKeyInGuestRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeleteRegistryKeyInGuestResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="deleteRegistryValue" name="deleteRegistryValue"></a>
+<h1>DeleteRegistryValueInGuest</h1>
+<p></p>
+         Delete a registry value.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.WindowsRegistryManager.html">GuestWindowsRegistryManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.Modify" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>valueName</strong></td><td><a href="vim.vm.guest.WindowsRegistryManager.RegistryValueName.html">GuestRegValueNameSpec</a></td><td>
+<p></p>
+         The registry value name to be deleted.
+                  The Value "name" (specified in
+                  <a href="vim.vm.guest.WindowsRegistryManager.RegistryValueName.html">GuestRegValueNameSpec</a>)
+                  can be empty. If "name" is empty, it deletes the value
+                  for the unnamed or default value of the given key.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.Modify</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if the program path cannot be run because the guest authentication will not allow the operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestRegistryKeyInvalid.html">GuestRegistryKeyInvalid</a></td><td>Thrown if the registry key is not valid. Check the HKEY Root specified.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestRegistryValueNotFound.html">GuestRegistryValueNotFound</a></td><td>Thrown if the registry value was not found.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('DeleteRegistryValueInGuest-textarea');expandcontent(this, 'DeleteRegistryValueInGuest-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="DeleteRegistryValueInGuest-div">
+<textarea cols="20" rows="10" name="DeleteRegistryValueInGuest-textarea" wrap="off" readonly="1" id="DeleteRegistryValueInGuest-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeleteRegistryValueInGuest" type="vim25:DeleteRegistryValueInGuestRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="DeleteRegistryValueInGuestResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="listRegistryKeys" name="listRegistryKeys"></a>
+<h1>ListRegistryKeysInGuest</h1>
+<p></p>
+         List all registry subkeys for a given registry key.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.WindowsRegistryManager.html">GuestWindowsRegistryManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.Query" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>keyName</strong></td><td><a href="vim.vm.guest.WindowsRegistryManager.RegistryKeyName.html">GuestRegKeyNameSpec</a></td><td>
+<p></p>
+         The path to the registry key for which all subkeys are to
+                be listed.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>recursive</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         If true, all subkeys are listed recursively.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>matchPattern</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         A filter for the key names returned, specified using
+                     perl-compatible regular expressions. If matchPattern
+                     is unset, then the pattern '.*' is used, which returns
+                     all key names found, otherwise only those key names
+                     that match the input pattern shall be returned.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span><span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.Query</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.vm.guest.WindowsRegistryManager.RegistryKeyRecord.html">GuestRegKeyRecordSpec[]</a></td><td>The list of subkeys is returned in an array of <a href="vim.vm.guest.WindowsRegistryManager.RegistryKey.html">GuestRegKeySpec</a> structures.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if the program path cannot be run because the guest authentication will not allow the operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestRegistryKeyInvalid.html">GuestRegistryKeyInvalid</a></td><td>Thrown if the registry key is not valid. Check the HKEY Root specified.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ListRegistryKeysInGuest-textarea');expandcontent(this, 'ListRegistryKeysInGuest-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ListRegistryKeysInGuest-div">
+<textarea cols="20" rows="10" name="ListRegistryKeysInGuest-textarea" wrap="off" readonly="1" id="ListRegistryKeysInGuest-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListRegistryKeysInGuest" type="vim25:ListRegistryKeysInGuestRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListRegistryKeysInGuestResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:GuestRegKeyRecordSpec" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="listRegistryValues" name="listRegistryValues"></a>
+<h1>ListRegistryValuesInGuest</h1>
+<p></p>
+         List all registry values for a given registry key.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.WindowsRegistryManager.html">GuestWindowsRegistryManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.Query" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>keyName</strong></td><td><a href="vim.vm.guest.WindowsRegistryManager.RegistryKeyName.html">GuestRegKeyNameSpec</a></td><td>
+<p></p>
+         The path to the registry key for which all values are to be
+                listed.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>expandStrings</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         If true, all values that have expandable data such
+                      as environment variable names, shall get expanded in
+                      the result.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>matchPattern</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         A filter for the value names returned, specified using
+                     perl-compatible regular expressions. If matchPattern
+                     is unset, then the pattern '.*' is used, which returns
+                     all value names found, otherwise only those value
+                     names that match the input pattern shall be returned.
+      <br>
+</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set </span><span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.Query</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.vm.guest.WindowsRegistryManager.RegistryValue.html">GuestRegValueSpec[]</a></td><td>The list of values is returned in an array of <a href="vim.vm.guest.WindowsRegistryManager.RegistryValue.html">GuestRegValueSpec</a> structures.</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if the program path cannot be run because the guest authentication will not allow the operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestRegistryKeyInvalid.html">GuestRegistryKeyInvalid</a></td><td>Thrown if the registry key is not valid. Check the HKEY Root specified.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ListRegistryValuesInGuest-textarea');expandcontent(this, 'ListRegistryValuesInGuest-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ListRegistryValuesInGuest-div">
+<textarea cols="20" rows="10" name="ListRegistryValuesInGuest-textarea" wrap="off" readonly="1" id="ListRegistryValuesInGuest-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListRegistryValuesInGuest" type="vim25:ListRegistryValuesInGuestRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListRegistryValuesInGuestResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:GuestRegValueSpec" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="setRegistryValue" name="setRegistryValue"></a>
+<h1>SetRegistryValueInGuest</h1>
+<p></p>
+         Set/Create a registry value.
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.WindowsRegistryManager.html">GuestWindowsRegistryManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.Modify" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>value</strong></td><td><a href="vim.vm.guest.WindowsRegistryManager.RegistryValue.html">GuestRegValueSpec</a></td><td>
+<p></p>
+         The information for the registry value to be set/created.
+              The Value "name" (specified in
+              <a href="vim.vm.guest.WindowsRegistryManager.RegistryValueName.html">GuestRegValueNameSpec</a>)
+              and the Value "data" (specified in
+              <a href="vim.vm.guest.WindowsRegistryManager.RegistryValue.html">GuestRegValueSpec</a>)
+              can both be empty. If "name" is empty, it sets the value for
+              the unnamed or default value of the given key.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.Modify</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if the program path cannot be run because the guest authentication will not allow the operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestRegistryKeyInvalid.html">GuestRegistryKeyInvalid</a></td><td>Thrown if the registry key is not valid. Check the HKEY Root specified.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('SetRegistryValueInGuest-textarea');expandcontent(this, 'SetRegistryValueInGuest-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="SetRegistryValueInGuest-div">
+<textarea cols="20" rows="10" name="SetRegistryValueInGuest-textarea" wrap="off" readonly="1" id="SetRegistryValueInGuest-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="SetRegistryValueInGuest" type="vim25:SetRegistryValueInGuestRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="SetRegistryValueInGuestResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

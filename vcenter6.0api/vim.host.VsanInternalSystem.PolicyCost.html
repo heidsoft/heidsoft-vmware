@@ -1,0 +1,166 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.host.VsanInternalSystem.PolicyCost" name="vim.host.VsanInternalSystem.PolicyCost"></a>
+<h1>Data Object - VsanPolicyCost</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.host.VsanInternalSystem.PolicySatisfiability.html#field_detail">VsanPolicySatisfiability</a>
+</dd>
+<dt>Extends</dt>
+<dd>
+<a href="vmodl.DynamicData.html">DynamicData</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<H2>Data Object 
+                  Description</H2>
+<p></p>
+         PolicyCost --
+
+    Structure to describe the cost of satisfying a policy.
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="changeDataSize" name="changeDataSize"></a><strong>changeDataSize</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:long</td><td>
+<p></p>
+         Change (in bytes) of size of data stored on the datastore. This is
+ the max of reserved and used capacity.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="changeFlashReadCacheSize" name="changeFlashReadCacheSize"></a><strong>changeFlashReadCacheSize</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:long</td><td>
+<p></p>
+         Change (in bytes) of flash space reserved for read cache if new
+ policy is applied.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="copyDataSize" name="copyDataSize"></a><strong>copyDataSize</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:long</td><td>
+<p></p>
+         Size (in bytes) of data we need to write to VSAN Datastore if new
+ policy is applied.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="currentDataSize" name="currentDataSize"></a><strong>currentDataSize</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:long</td><td>
+<p></p>
+         Size (in bytes) of data currently stored on the datastore. This is
+ the max of reserved and used capacity.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="currentDiskSpaceToAddressSpaceRatio" name="currentDiskSpaceToAddressSpaceRatio"></a><strong>currentDiskSpaceToAddressSpaceRatio</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:float</td><td>
+<p></p>
+         Current ratio of physical disk space of an object to the logical VSAN
+ address space. For eg. an object of size 1GB with two copies of the
+ data has two 1GB replicas and so this ratio is 2.
+      <p></p>
+<B><I>Since </I></B>vSphere API 6.0<br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="currentFlashReadCacheSize" name="currentFlashReadCacheSize"></a><strong>currentFlashReadCacheSize</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:long</td><td>
+<p></p>
+         Size (in bytes) of flash space currently reserved for read cache.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="diskSpaceToAddressSpaceRatio" name="diskSpaceToAddressSpaceRatio"></a><strong>diskSpaceToAddressSpaceRatio</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:float</td><td>
+<p></p>
+         Ratio of physical disk space of an object to the logical VSAN
+ address space after new policy is applied. For eg. an object of size
+ 1GB with two copies of the data has two 1GB replicas and so this
+ ratio is 2.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="tempDataSize" name="tempDataSize"></a><strong>tempDataSize</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:long</td><td>
+<p></p>
+         Size (in bytes) for temporary data that will be needed on disk if
+ new policy is applied.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td colspan="3">
+						Properties inherited from <a href="vmodl.DynamicData.html">DynamicData</a></td>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set</span>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="VsanPolicyCost">
+            <complexContent>
+               <extension base="vim25:DynamicData">
+                  <sequence>
+                     <element name="changeDataSize" type="xsd:long" minOccurs="0"/>
+                     <element name="currentDataSize" type="xsd:long" minOccurs="0"/>
+                     <element name="tempDataSize" type="xsd:long" minOccurs="0"/>
+                     <element name="copyDataSize" type="xsd:long" minOccurs="0"/>
+                     <element name="changeFlashReadCacheSize" type="xsd:long" minOccurs="0"/>
+                     <element name="currentFlashReadCacheSize" type="xsd:long" minOccurs="0"/>
+                     <element name="currentDiskSpaceToAddressSpaceRatio" type="xsd:float" minOccurs="0"/>
+                     <element name="diskSpaceToAddressSpaceRatio" type="xsd:float" minOccurs="0"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

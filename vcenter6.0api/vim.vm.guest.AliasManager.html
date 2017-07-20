@@ -1,0 +1,937 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.vm.guest.AliasManager" name="vim.vm.guest.AliasManager"></a>
+<h1>Managed Object -  
+						GuestAliasManager</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.vm.guest.GuestOperationsManager.html#field_detail">GuestOperationsManager</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.vm.guest.AliasManager.GuestAliases.html">GuestAliases</a>, <a href="vim.vm.guest.AliasManager.GuestAuthAliasInfo.html">GuestAuthAliasInfo</a>, <a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a>, <a href="vim.vm.guest.AliasManager.GuestAuthSubject.html">GuestAuthSubject</a>, <a href="vim.vm.guest.AliasManager.GuestMappedAliases.html">GuestMappedAliases</a>, <a href="vim.VirtualMachine.html">VirtualMachine</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<br>
+<h2>Managed Object Description</h2>
+<p></p>
+         The GuestAliasManager supports single sign-on for virtual machine access
+ to perform guest operations. The GuestAliasManager provides methods
+ to create and access aliases.
+ <p>
+ A guest alias defines an association between a guest user account on a virtual
+ machine
+ and an external vSphere user account. The vSphere account is represented by
+ credentials consisting of an X.509 certificate and a subject name.
+ The certificate and subject name
+ are encoded
+ in SAML tokens that are provided by the VMware SSO Server. The SAML tokens
+ are attached
+ to guest operation requests. If the credentials in a SAML token match an
+ alias that is defined
+ for a virtual machine, the ESXi Server guest components grant
+ access for execution of the
+ guest operation
+ in the context of the user account on the virtual machine.
+ </p>
+ <p>
+ To create a guest alias, use the AddGuestAlias method. AddGuestAlias
+ establishes
+ the association between a guest user account, certificate, and SAML token subject.
+ </p>
+ <ul>
+ <li>The username parameter identifies the guest account.</li>
+ <li>The base64Cert parameter specifies the X.509 certificate.</li>
+ <li>The aliasInfo parameter identifies the SAML token subject
+  (<a href="vim.vm.guest.AliasManager.GuestAuthAliasInfo.html">GuestAuthAliasInfo</a>.
+  <a href="vim.vm.guest.AliasManager.GuestAuthAliasInfo.html#subject">subject</a>.
+  <a href="vim.vm.guest.AliasManager.GuestAuthNamedSubject.html#name">name</a>).</li>
+  </ul>
+  <p>
+  If there are no aliases defined for a virtual machine, the ESXi Server
+  will perform
+  standard authentication using the credentials associated with a guest
+  operation request.
+  If one or more aliases are defined for a virtual machine, any guest
+  operation request
+  that uses SAML token authentication SAMLTokenAuthentication must specify
+  a token
+  that corresponds to one of the defined aliases.
+  </p>
+  <p>
+  After defining one or more guest aliases, you can specify
+  <a href="vim.vm.guest.SAMLTokenAuthentication.html">SAMLTokenAuthentication</a> for the
+  <b>auth</b> parameter to guest operation methods:
+  </p>
+  <ul>
+  <li><a href="vim.vm.guest.ProcessManager.html">GuestProcessManager</a> methods</li>
+  <li><a href="vim.vm.guest.FileManager.html">GuestFileManager</a> methods</li>
+  <li><a href="vim.vm.guest.WindowsRegistryManager.html">GuestWindowsRegistryManager</a> methods</li>
+  </ul>
+  <p>
+  For information about obtaining a SAML token from a VMware SSO Server,
+  see <i>VMware Single Sign-On Programming Guide</i>.
+  </p>
+  <p>
+  You can define multiple aliases for a guest account. You can also
+  map the credentials
+  to an alias by setting <b>mapCert</b> to "true" in the call to the
+  AddGuestAlias method.
+  When an alias has a mapped credential, requests using that alias do not
+  need to identify the guest account.
+  </p>
+      <a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r0">
+<td colspan="3">None</td>
+</tr>
+</table>
+<br>
+<a id="method_detail" name="method_detail"></a>
+<p class="table-title">Methods</p>
+<table cellspacing="0">
+<tr class="r1">
+<th>
+				          Methods defined in this Managed Object
+				        </th>
+</tr>
+<tr class="r0">
+<td><a href="#addAlias">AddGuestAlias</a>, <a href="#listAliases">ListGuestAliases</a>, <a href="#listMappedAliases">ListGuestMappedAliases</a>, <a href="#removeAlias">RemoveGuestAlias</a>, <a href="#removeAliasByCert">RemoveGuestAliasByCert</a></td>
+</tr>
+</table>
+<br>
+<a id="addAlias" name="addAlias"></a>
+<h1>AddGuestAlias</h1>
+<p></p>
+         Defines an alias for a guest acount in a virtual machine.
+ After the alias is defined, the ESXi Server will use the alias
+ to authenticate guest operations requests.
+ <p>
+ This will add the given VMware SSO Server's certificate and a
+ subject to the alias store of the
+ specified user in the guest.
+ <p>
+ In order to add an alias to the guest, you must supply
+ an existing valid credential.  This can be any instance
+ of <a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a>, but must be valid for the
+ specified guest username.
+ <p>
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.AliasManager.html">GuestAliasManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.ModifyAliases" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data for this operation.  See
+             <a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a>.   These credentials must satisfy
+             authentication requirements
+             for a guest account on the specified virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>username</strong></td><td>xsd:string</td><td>
+<p></p>
+         Username for the guest account on the virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>mapCert</strong></td><td>xsd:boolean</td><td>
+<p></p>
+         Indicates whether the certificate associated with the
+                alias should be mapped. If an alias certificate is mapped,
+                guest operation requests that use that alias do not have
+                to specify the guest account username in the
+                <a href="vim.vm.guest.SAMLTokenAuthentication.html">SAMLTokenAuthentication</a> object. If mapCert is
+                false, the request must specify the username.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>base64Cert</strong></td><td>xsd:string</td><td>
+<p></p>
+         X.509 certificate from the VMware SSO Server,
+                    in base64 encoded DER format. The ESXi
+                    Server uses this certificate to authenticate guest
+                    operation requests.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>aliasInfo</strong></td><td><a href="vim.vm.guest.AliasManager.GuestAuthAliasInfo.html">GuestAuthAliasInfo</a></td><td>
+<p></p>
+         Specifies the subject name for authentication.
+                   The subject name (when present) corresponds to
+                   the value of the Subject element
+                   in SAML tokens. The ESXi Server uses the subject
+                   name to authenticate guest operation requests.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.ModifyAliases</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestMultipleMappings.html">GuestMultipleMappings</a></td><td>Thrown if the operation fails because mapCert is set and the certificate already exists in the mapping file for a different user.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if there are insufficient permissions in the guest OS.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if the operation fails because the certificate is invalid.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('AddGuestAlias-textarea');expandcontent(this, 'AddGuestAlias-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="AddGuestAlias-div">
+<textarea cols="20" rows="10" name="AddGuestAlias-textarea" wrap="off" readonly="1" id="AddGuestAlias-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="AddGuestAlias" type="vim25:AddGuestAliasRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="AddGuestAliasResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="listAliases" name="listAliases"></a>
+<h1>ListGuestAliases</h1>
+<p></p>
+         Lists the
+ <a href="vim.vm.guest.AliasManager.GuestAliases.html">GuestAliases</a>
+ for a specified user in the guest that can be used
+ for authentication of guest operations.
+ <p>
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.AliasManager.html">GuestAliasManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.QueryAliases" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data for this operation.  See
+             <a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a>.   These credentials must satisfy
+             authentication requirements
+             for a guest account on the specified virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>username</strong></td><td>xsd:string</td><td>
+<p></p>
+         The guest user whose Alias store is being queried.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.QueryAliases</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.vm.guest.AliasManager.GuestAliases.html">GuestAliases[]</a></td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if there are insufficient permissions in the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ListGuestAliases-textarea');expandcontent(this, 'ListGuestAliases-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ListGuestAliases-div">
+<textarea cols="20" rows="10" name="ListGuestAliases-textarea" wrap="off" readonly="1" id="ListGuestAliases-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListGuestAliases" type="vim25:ListGuestAliasesRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListGuestAliasesResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:GuestAliases" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="listMappedAliases" name="listMappedAliases"></a>
+<h1>ListGuestMappedAliases</h1>
+<p></p>
+         Lists the
+ <a href="vim.vm.guest.AliasManager.GuestMappedAliases.html">GuestMappedAliases</a>
+ in the guest that can be used for
+ authentication of guest operations.
+ <p>
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.AliasManager.html">GuestAliasManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.QueryAliases" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data for this operation.  See
+             <a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a>.   These credentials must satisfy
+             authentication requirements
+             for a guest account on the specified virtual machine.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.QueryAliases</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td><a href="vim.vm.guest.AliasManager.GuestMappedAliases.html">GuestMappedAliases[]</a></td><td></td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if there are insufficient permissions in the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r0">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('ListGuestMappedAliases-textarea');expandcontent(this, 'ListGuestMappedAliases-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="ListGuestMappedAliases-div">
+<textarea cols="20" rows="10" name="ListGuestMappedAliases-textarea" wrap="off" readonly="1" id="ListGuestMappedAliases-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListGuestMappedAliases" type="vim25:ListGuestMappedAliasesRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="ListGuestMappedAliasesResponse">
+            <complexType>
+               <sequence>
+                  <element name="returnval" type="vim25:GuestMappedAliases" minOccurs="0" maxOccurs="unbounded"/>
+               </sequence>
+            </complexType>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="removeAlias" name="removeAlias"></a>
+<h1>RemoveGuestAlias</h1>
+<p></p>
+         Removes an alias from the guest so it can no longer be
+ used for
+ authentication of guest operations.  It will also be removed
+ from the mapped credentials.
+ <p>
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.AliasManager.html">GuestAliasManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.ModifyAliases" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data for this operation.  See
+             <a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a>.   These credentials must satisfy
+             authentication requirements
+             for a guest account on the specified virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>username</strong></td><td>xsd:string</td><td>
+<p></p>
+         Username for the guest account on the virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>base64Cert</strong></td><td>xsd:string</td><td>
+<p></p>
+         The X.509 certificate associated with the alias to be
+                   removed, in base64 encoded DER format.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>subject</strong></td><td><a href="vim.vm.guest.AliasManager.GuestAuthSubject.html">GuestAuthSubject</a></td><td>
+<p></p>
+         The subject of the alias.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.ModifyAliases</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if there are insufficient permissions in the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if the operation fails because the certificate is invalid.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('RemoveGuestAlias-textarea');expandcontent(this, 'RemoveGuestAlias-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="RemoveGuestAlias-div">
+<textarea cols="20" rows="10" name="RemoveGuestAlias-textarea" wrap="off" readonly="1" id="RemoveGuestAlias-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="RemoveGuestAlias" type="vim25:RemoveGuestAliasRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="RemoveGuestAliasResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<a id="removeAliasByCert" name="removeAliasByCert"></a>
+<h1>RemoveGuestAliasByCert</h1>
+<p></p>
+         Removes a VMware SSO Server's certificate and all
+ associated aliases from the guest so it
+ can no longer be used for
+ authentication of guest operations.  It will also be removed
+ from the global certificate-to-user mapping file in the guest.
+ <p>
+      <dl>
+<dt>Required Privileges</dt>
+<dd>None</dd>
+</dl>
+<p class="table-title">
+		Parameters
+		</p>
+<table cellspacing="0">
+<tr>
+<th>Name</th><th>Type</th><th>Description</th>
+</tr>
+<tr class="r1">
+<td><strong>_this</strong></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a></td><td>
+					A reference to the 
+						<a href="vim.vm.guest.AliasManager.html">GuestAliasManager</a>
+						used to make the method call.
+					</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>vm</strong><span title="Required Privilege: VirtualMachine.GuestOperations.ModifyAliases" class="privilege-ref"> P</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         Virtual machine to perform the operation on.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>auth</strong></td><td><a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a></td><td>
+<p></p>
+         The guest authentication data for this operation.  See
+             <a href="vim.vm.guest.GuestAuthentication.html">GuestAuthentication</a>.   These credentials must satisfy
+             authentication requirements
+             for a guest account on the specified virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><strong>username</strong></td><td>xsd:string</td><td>
+<p></p>
+         Username for the guest account on the virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><strong>base64Cert</strong></td><td>xsd:string</td><td>
+<p></p>
+         The X.509 certificate to be removed, in base64
+                   encoded DER format.
+      <br>
+</td>
+</tr>
+</table>
+<span class="privilege-ref">P</span><span class="footnote">
+                  Required privilege:
+                  VirtualMachine.GuestOperations.ModifyAliases</span>
+<br>
+<p class="table-title">
+		Return Value
+		</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr>
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<p class="table-title">
+         Faults
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th><th>
+               Description
+            </th>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestComponentsOutOfDate.html">GuestComponentsOutOfDate</a></td><td>Thrown if the guest agent is too old to support the operation.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestOperationsFault.html">GuestOperationsFault</a></td><td>Thrown if there is an error processing a guest operation.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.GuestOperationsUnavailable.html">GuestOperationsUnavailable</a></td><td>Thrown if the VM agent for guest operations is not running.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.GuestPermissionDenied.html">GuestPermissionDenied</a></td><td>Thrown if there are insufficient permissions in the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.fault.InvalidArgument.html">InvalidArgument</a></td><td>Thrown if the operation fails because the certificate is invalid.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidGuestLogin.html">InvalidGuestLogin</a></td><td>Thrown if the the guest authentication information was not accepted.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.InvalidPowerState.html">InvalidPowerState</a></td><td>Thrown if the VM is not powered on.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.InvalidState.html">InvalidState</a></td><td>Thrown if the operation cannot be performed because of the virtual machine's current state.</td>
+</tr>
+<tr class="r1">
+<td><a href="vim.fault.OperationDisabledByGuest.html">OperationDisabledByGuest</a></td><td>Thrown if the operation is not enabled due to guest agent configuration.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.OperationNotSupportedByGuest.html">OperationNotSupportedByGuest</a></td><td>Thrown if the operation is not supported by the guest OS.</td>
+</tr>
+<tr class="r1">
+<td><a href="vmodl.RuntimeFault.html">RuntimeFault</a></td><td>Thrown if any type of runtime fault is thrown that is not covered by the other faults; for example, a communication error.</td>
+</tr>
+<tr class="r0">
+<td><a href="vim.fault.TaskInProgress.html">TaskInProgress</a></td><td>Thrown if the virtual machine is busy.</td>
+</tr>
+</table>
+<p class="table-title">
+         Events
+      </p>
+<table cellspacing="0">
+<tr>
+<th>
+               Type
+            </th>
+</tr>
+<tr class="r1">
+<td colspan="2">None</td>
+</tr>
+</table>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('RemoveGuestAliasByCert-textarea');expandcontent(this, 'RemoveGuestAliasByCert-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="RemoveGuestAliasByCert-div">
+<textarea cols="20" rows="10" name="RemoveGuestAliasByCert-textarea" wrap="off" readonly="1" id="RemoveGuestAliasByCert-textarea">         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="RemoveGuestAliasByCert" type="vim25:RemoveGuestAliasByCertRequestType"/>
+         <element xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="RemoveGuestAliasByCertResponse">
+            <complexType/>
+         </element></textarea>
+</div>
+<br>
+<br>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td></td><td><a href="#method_detail">Local Methods</a></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.storageDrs.IoLoadBalanceConfig" name="vim.storageDrs.IoLoadBalanceConfig"></a>
+<h1>Data Object - StorageDrsIoLoadBalanceConfig</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.storageDrs.PodConfigInfo.html#field_detail">StorageDrsPodConfigInfo</a>, <a href="vim.storageDrs.PodConfigSpec.html#field_detail">StorageDrsPodConfigSpec</a>
+</dd>
+<dt>Extends</dt>
+<dd>
+<a href="vmodl.DynamicData.html">DynamicData</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 5.0</dd>
+<p></p>
+</dl>
+<H2>Data Object 
+                  Description</H2>
+<p></p>
+         Storage DRS configuration for I/O load balancing.
+  <p>
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="ioLatencyThreshold" name="ioLatencyThreshold"></a><strong>ioLatencyThreshold</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:int</td><td>
+<p></p>
+         Storage DRS makes storage migration recommendations if
+  I/O latency on one (or more) of the datastores is higher than
+  the specified threshold.
+  <p>
+  Unit: millisecond.
+  The valid values are in the range of 5 to 100. If not specified,
+  the default value is 15.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="ioLoadImbalanceThreshold" name="ioLoadImbalanceThreshold"></a><strong>ioLoadImbalanceThreshold</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:int</td><td>
+<p></p>
+         Storage DRS makes storage migration recommendations if
+  I/O load imbalance level is higher than the specified threshold.
+  <p>
+  Unit: a number.
+  The valid values are in the range of 1 to 100. If not specified,
+  the default value is 5.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="reservableIopsThreshold" name="reservableIopsThreshold"></a><strong>reservableIopsThreshold</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:int</td><td>
+<p></p>
+         Storage DRS makes storage migration recommendations if total
+  IOPs reservation of all VMs running on a datastore is higher than
+  the specified threshold. Storage DRS recommends migration out of
+  all such datastores, if more than one datastore exceed their reserved
+  IOPs threshold.
+  <p>
+  This is an advanced option, and should only be used if Storage DRS
+  estimated IOPs capacity is incorrect for datastores. The value
+  should be based on conservative estimate of storage performance,
+  and ideally should be set to about 50-60% of worse case peak
+  performance of backing LUN.
+      <p></p>
+<B><I>Since </I></B>vSphere API 6.0<br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="reservablePercentThreshold" name="reservablePercentThreshold"></a><strong>reservablePercentThreshold</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:int</td><td>
+<p></p>
+         Storage DRS makes storage migration recommendations if total
+  IOPs reservation of all VMs running on a datastore is higher than
+  the specified threshold. Storage DRS recommends migration out of
+  all such datastores, if more than one datastore exceed their reserved
+  IOPs threshold.
+  <p>
+  The actual Iops used to determine threshold are computed from Storage
+  DRS estimation of IOPs capacity of a datastore. The absolute value
+  may change over time, according to storage response to workloads.
+  <p>
+  The valid values are in the range of 30 (i.e., 30%) to 100 (i.e., 100%).
+  If not specified, the default value is 60%.
+      <p></p>
+<B><I>Since </I></B>vSphere API 6.0<br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="reservableThresholdMode" name="reservableThresholdMode"></a><strong>reservableThresholdMode</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Determines which reservation threshold specification to use.
+ See <a href="vim.storageDrs.PodConfigInfo.Behavior.html">StorageDrsPodConfigInfoBehavior</a>. If unspecified, the
+ mode is assumed automatic by default. Storage DRS uses
+ percentage value in that case.
+ If mode is specified, but corresponding reservationThreshold
+ value is absent, option specific defaults are used.
+      <p></p>
+<B><I>Since </I></B>vSphere API 6.0<br>
+</td>
+</tr>
+<tr class="r0">
+<td colspan="3">
+						Properties inherited from <a href="vmodl.DynamicData.html">DynamicData</a></td>
+</tr>
+<tr class="r1">
+<td colspan="3">None</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set</span>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="StorageDrsIoLoadBalanceConfig">
+            <complexContent>
+               <extension base="vim25:DynamicData">
+                  <sequence>
+                     <element name="reservablePercentThreshold" type="xsd:int" minOccurs="0"/>
+                     <element name="reservableIopsThreshold" type="xsd:int" minOccurs="0"/>
+                     <element name="reservableThresholdMode" type="xsd:string" minOccurs="0"/>
+                     <element name="ioLatencyThreshold" type="xsd:int" minOccurs="0"/>
+                     <element name="ioLoadImbalanceThreshold" type="xsd:int" minOccurs="0"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<html xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:vim2="urn:vim2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./commonRes.js" language="JavaScript"> type="text/javascript"></script>
+<link href="doc-style.css" type="text/css" rel="StyleSheet">
+</head>
+<script src="dynamic-content.js" type="text/javascript"></script>
+<body>
+<table cellspacing="0" class="header-footer" id="top">
+<tr>
+<td>
+<br>
+</td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<a id="vim.cluster.PlacementSpec" name="vim.cluster.PlacementSpec"></a>
+<h1>Data Object - PlacementSpec</h1>
+<dl>
+<dt>Property of</dt>
+<dd>
+<a href="vim.storageDrs.PlacementRankSpec.html#field_detail">PlacementRankSpec</a>, <a href="vim.storageDrs.PlacementRankVmSpec.html#field_detail">StorageDrsPlacementRankVmSpec</a>
+</dd>
+<dt>Parameter to</dt>
+<dd>
+<a href="vim.ClusterComputeResource.html#placeVm">PlaceVm</a>
+</dd>
+<dt>Extends</dt>
+<dd>
+<a href="vmodl.DynamicData.html">DynamicData</a>
+</dd>
+<dt>See also</dt>
+<dd>
+<a href="vim.cluster.RuleInfo.html">ClusterRuleInfo</a>, <a href="vim.Datastore.html">Datastore</a>, <a href="vim.HostSystem.html">HostSystem</a>, <a href="vim.StoragePod.html">StoragePod</a>, <a href="vim.VirtualMachine.html">VirtualMachine</a>, <a href="vim.vm.CloneSpec.html">VirtualMachineCloneSpec</a>, <a href="vim.vm.ConfigSpec.html">VirtualMachineConfigSpec</a>, <a href="vim.VirtualMachine.MovePriority.html">VirtualMachineMovePriority</a>, <a href="vim.vm.RelocateSpec.html">VirtualMachineRelocateSpec</a>
+</dd>
+<dt>Since </dt>
+<dd>vSphere API 6.0</dd>
+<p></p>
+</dl>
+<H2>Data Object 
+                  Description</H2>
+<p></p>
+         PlacementSpec encapsulates all of the information passed to the
+   <a href="vim.ClusterComputeResource.html#placeVm">PlaceVm</a> method, which asks
+   DRS for recommendations for target hosts and datastores for placing
+   a virtual machine and its virtual disks in a cluster using
+   unified VMotion.
+   <p>
+      <p></p>
+<a id="field_detail" name="field_detail"></a>
+<p class="table-title">Properties</p>
+<table cellspacing="0">
+<tr>
+<th>
+	          Name
+	        </th><th>
+	          Type
+	        </th><th>
+	          Description
+	        </th>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="cloneName" name="cloneName"></a><strong>cloneName</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Name for the cloned virtual machine, if the operation type is a clone
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="cloneSpec" name="cloneSpec"></a><strong>cloneSpec</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.vm.CloneSpec.html">VirtualMachineCloneSpec</a></td><td>
+<p></p>
+         Specification for a virtual machine clone operation
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="configSpec" name="configSpec"></a><strong>configSpec</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.vm.ConfigSpec.html">VirtualMachineConfigSpec</a></td><td>
+<p></p>
+         Configuration information for the virtual machine.
+  For an intra-vCenter migration, this argument should be unset.
+  For a cross-vCenter migration, this argument is required.
+  In the latter case, the following elements of the configSpec
+  will be expected: version, cpuAllocation, memoryAllocation, numCPUs,
+  memoryMB, files, swapPlacement; in addition, the configSpec.deviceChange
+  should contain all the virtual disks of the virtual machine to be migrated.
+  If configSpec.deviceChange is empty, the vm will be treated as a
+  diskless vm.
+  If a storage profile is specified for a virtual disk or vm configuration,
+  only datastores that match this profile will be considered for that
+  virtual disk or vm configuration.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="datastores" name="datastores"></a><strong>datastores</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference[]</a>
+<br> to a
+                  <a href="vim.Datastore.html">Datastore[]</a></td><td>
+<p></p>
+         A list of compatible datastores for the virtual machine.
+  This list is ignored if relocateSpec.datastore is set.
+  For both intra-vCenter and cross-vCenter migrations, this list is required
+  if relocateSpec.datastore is unset.
+  If neither relocateSpec.datastore nor a list of compatible datastores are
+  specified, all datastores connected to hosts in the cluster will be
+  considered, in which case, the selected datastores in the PlacementResult
+  are not guaranteed to be compatible with the incoming virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="disallowPrerequisiteMoves" name="disallowPrerequisiteMoves"></a><strong>disallowPrerequisiteMoves</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:boolean</td><td>
+<p></p>
+         Specification for whether to disable pre-requisite vmotions or storage
+  vmotions for virtual machine placement. The default value is true,
+  that is, to disallow such prerequisite moves.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="hosts" name="hosts"></a><strong>hosts</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference[]</a>
+<br> to a
+                  <a href="vim.HostSystem.html">HostSystem[]</a></td><td>
+<p></p>
+         A list of compatible hosts for the virtual machine.
+  This list is ignored if relocateSpec.host is set.
+  For both intra-vCenter and cross-vCenter migrations, this list is required
+  if relocateSpec.host is unset.
+  If neither relocateSpec.host nor a list of compatible hosts are specified,
+  all hosts in the cluster will be considered, in which case, the selected
+  hosts in the PlacementResult are not guaranteed to be compatible with the
+  incoming virtual machine.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="key" name="key"></a><strong>key</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Client generated identifier as a reference to the placement request
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="placementType" name="placementType"></a><strong>placementType</strong><span title="Need not be set" class="footnote-ref">*</span></td><td>xsd:string</td><td>
+<p></p>
+         Type of the placement. The set of possible values are described in
+ <a href="vim.cluster.PlacementSpec.PlacementType.html">PlacementSpecPlacementType</a>
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="priority" name="priority"></a><strong>priority</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.VirtualMachine.MovePriority.html">VirtualMachineMovePriority</a></td><td>
+<p></p>
+         Priority of the migration operation.
+  The default value is defaultPriority.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="relocateSpec" name="relocateSpec"></a><strong>relocateSpec</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.vm.RelocateSpec.html">VirtualMachineRelocateSpec</a></td><td>
+<p></p>
+         Specification for relocating a virtual machine.
+  Can be used to optionally specify a target host, a target datastore,
+  or a target resource pool. If a target host is specified, this host
+  becomes the recommended host; if a target datastore is specified,
+  this datastore becomes the recommended datastore; if no resource
+  pool is specified, the virtual machine will be attached to the
+  cluster root resource pool; if the target resource pool specified
+  is a VirtualApp, an InvalidArgument fault will be thrown.
+  If a storage profile is specified for a virtual disk or vm configuration,
+  only datastores that match this profile will be considered for that
+  virtual disk or vm configuration.
+  For cross-vCenter migration, the caller
+  should set the service and the folder arguments properly either in
+  the input relocateSpec or in the output relocateSpec in the placement
+  recommendation before passing the relocateSpec to the RelocateVM API.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="rules" name="rules"></a><strong>rules</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vim.cluster.RuleInfo.html">ClusterRuleInfo[]</a></td><td>
+<p></p>
+         A list of rules to respect while placing the virtual machine on
+ target cluster.
+ If the list is empty, rules will not be considered during placement,
+ in case of cross-cluster placement within a VC and cross VC
+ placement across VCs.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td nowrap="1"><a id="storagePods" name="storagePods"></a><strong>storagePods</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference[]</a>
+<br> to a
+                  <a href="vim.StoragePod.html">StoragePod[]</a></td><td>
+<p></p>
+         A list of compatible datastore clusters for the virtual machine.
+  This list is ignored if relocateSpec.datastore is set.
+  For both intra-vCenter and cross-vCenter migrations, this list can be
+  empty, in which case, the user should set either RelocateSpec.datastore
+  or PlacementSpec.datastores as the target datastore or the list of
+  compatible datastores.
+      <br>
+</td>
+</tr>
+<tr class="r1">
+<td nowrap="1"><a id="vm" name="vm"></a><strong>vm</strong><span title="Need not be set" class="footnote-ref">*</span></td><td><a href="vmodl.ManagedObjectReference.html">ManagedObjectReference</a>
+<br> to a
+                  <a href="vim.VirtualMachine.html">VirtualMachine</a></td><td>
+<p></p>
+         The virtual machine to be placed.
+  For an intra-vCenter migration, this argument is required.
+  For a cross-vCenter migration, this argument is optional,
+  and if this argument is unset, the caller is responsible for
+  applying the DRS-recommended placement to the correct vm.
+      <br>
+</td>
+</tr>
+<tr class="r0">
+<td colspan="3">
+						Properties inherited from <a href="vmodl.DynamicData.html">DynamicData</a></td>
+</tr>
+<tr class="r1">
+<td colspan="3">None</td>
+</tr>
+</table>
+<span class="footnote-ref">*</span><span class="footnote">Need not be set</span>
+<br>
+<a style="margin-bottom:10px; margin-top:10px; cursor:hand; cursor:pointer" onclick="resize_textarea('wsdl-textarea');expandcontent(this, 'wsdl-div')">Show WSDL type definition</a>
+<div class="switchcontent" id="wsdl-div">
+<textarea cols="20" rows="10" name="wsdl-textarea" wrap="off" readonly="1" id="wsdl-textarea">         <complexType xmlns="http://www.w3.org/2001/XMLSchema" xmlns:vim25="urn:vim25" name="PlacementSpec">
+            <complexContent>
+               <extension base="vim25:DynamicData">
+                  <sequence>
+                     <element name="priority" type="vim25:VirtualMachineMovePriority" minOccurs="0"/>
+                     <element name="vm" type="vim25:ManagedObjectReference" minOccurs="0"/>
+                     <element name="configSpec" type="vim25:VirtualMachineConfigSpec" minOccurs="0"/>
+                     <element name="relocateSpec" type="vim25:VirtualMachineRelocateSpec" minOccurs="0"/>
+                     <element name="hosts" type="vim25:ManagedObjectReference" minOccurs="0" maxOccurs="unbounded"/>
+                     <element name="datastores" type="vim25:ManagedObjectReference" minOccurs="0" maxOccurs="unbounded"/>
+                     <element name="storagePods" type="vim25:ManagedObjectReference" minOccurs="0" maxOccurs="unbounded"/>
+                     <element name="disallowPrerequisiteMoves" type="xsd:boolean" minOccurs="0"/>
+                     <element name="rules" type="vim25:ClusterRuleInfo" minOccurs="0" maxOccurs="unbounded"/>
+                     <element name="key" type="xsd:string" minOccurs="0"/>
+                     <element name="placementType" type="xsd:string" minOccurs="0"/>
+                     <element name="cloneSpec" type="vim25:VirtualMachineCloneSpec" minOccurs="0"/>
+                     <element name="cloneName" type="xsd:string" minOccurs="0"/>
+                  </sequence>
+               </extension>
+            </complexContent>
+         </complexType></textarea>
+</div>
+<br>
+<br>
+<table cellspacing="0" class="header-footer" id="bottom">
+<tr>
+<td><a href="#top">Top of page</a></td><td></td><td><a href="#field_detail">Local Properties</a></td><td></td>
+</tr>
+<tr>
+<td><a href="index-mo_types.html">Managed Object Types</a></td><td><a href="index-do_types.html">Data Object Types</a></td><td><a href="index-properties.html">All Properties</a></td><td><a href="index-methods.html">All Methods</a></td>
+</tr>
+</table>
+<br>
+<script language="javascript">document.write(ID_Copyright);</script>
+<br>
+<script language="javascript">document.write(ID_VersionInformation);</script>
+</body>
+</html>

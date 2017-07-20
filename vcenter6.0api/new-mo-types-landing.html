@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>VMware vSphere API Reference</title>
+<script language="JavaScript" src="./commonRes.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="doc-style.css"/>
+</head>
+<body>
+<h1>New and Changed Managed Object Elements in 6.0</h1>
+<p>
+ The following sections list the new managed object API elements:
+<ul>
+<li><a href="#newMObjs">Managed objects</a></li>
+<li><a href="#newMethods">Methods</a></li>
+<li><a href="#newMethodParams">Method parameters</a></li>
+<li><a href="#newMObjProps">Properties</a></li>
+</ul>
+<h2><a name="newMObjs">New Managed Objects</a></h2>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th><strong>New Managed Objects</strong></th></tr>
+<tr><td><a href="vim.CertificateManager.html">CertificateManager</a></td></tr>
+<tr><td><a href="vim.cluster.EVCManager.html">ClusterEVCManager</a></td></tr>
+<tr><td><a href="vim.vm.guest.AliasManager.html">GuestAliasManager</a></td></tr>
+<tr><td><a href="vim.vm.guest.WindowsRegistryManager.html">GuestWindowsRegistryManager</a></td></tr>
+<tr><td><a href="vim.host.HostAccessManager.html">HostAccessManager</a></td></tr>
+<tr><td><a href="vim.host.CertificateManager.html">HostCertificateManager</a></td></tr>
+<tr><td><a href="vim.IoFilterManager.html">IoFilterManager</a></td></tr>
+<tr><td><a href="vim.host.MessageBusProxy.html">MessageBusProxy</a></td></tr>
+<tr><td><a href="vim.OverheadMemoryManager.html">OverheadMemoryManager</a></td></tr>
+<tr><td><a href="vim.VRPResourceManager.html">VRPResourceManager</a></td></tr>
+<tr><td><a href="vim.VsanUpgradeSystem.html">VsanUpgradeSystem</a></td></tr>
+</table>
+<h2><a name="newMethods">New Methods</a></h2>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th><strong>Managed Object</strong></th>
+<th><strong>Method</strong></th></tr>
+<tr><td rowspan="5"><a href="vim.ClusterComputeResource.html">ClusterComputeResource</a></td>
+<td><a href="vim.ClusterComputeResource.html#evcManager">EvcManager</a></td></tr>
+<td><a href="vim.ClusterComputeResource.html#findRulesForVm">FindRulesForVm</a></td></tr>
+<td><a href="vim.ClusterComputeResource.html#getResourceUsage">GetResourceUsage</a></td></tr>
+<td><a href="vim.ClusterComputeResource.html#placeVm">PlaceVm</a></td></tr>
+<td><a href="vim.ClusterComputeResource.html#stampAllRulesWithUuid">StampAllRulesWithUuid_Task</a></td></tr>
+<tr><td><a href="vim.Datacenter.html">Datacenter</a></td>
+<td><a href="vim.Datacenter.html#queryConnectionInfoViaSpec">QueryConnectionInfoViaSpec</a></td></tr>
+<tr><td><a href="vim.DistributedVirtualSwitch.html">DistributedVirtualSwitch</a></td>
+<td><a href="vim.DistributedVirtualSwitch.html#reconfigureVmVnicNetworkResourcePool">DvsReconfigureVmVnicNetworkResourcePool_Task</a></td></tr>
+<tr><td><a href="vim.EnvironmentBrowser.html">EnvironmentBrowser</a></td>
+<td><a href="vim.EnvironmentBrowser.html#queryConfigOptionEx">QueryConfigOptionEx</a></td></tr>
+<tr><td rowspan="7"><a href="vim.host.ActiveDirectoryAuthentication.html">HostActiveDirectoryAuthentication</a></td>
+<td><a href="vim.host.ActiveDirectoryAuthentication.html#disableSmartCardAuthentication">DisableSmartCardAuthentication</a></td></tr>
+<td><a href="vim.host.ActiveDirectoryAuthentication.html#enableSmartCardAuthentication">EnableSmartCardAuthentication</a></td></tr>
+<td><a href="vim.host.ActiveDirectoryAuthentication.html#installSmartCardTrustAnchor">InstallSmartCardTrustAnchor</a></td></tr>
+<td><a href="vim.host.ActiveDirectoryAuthentication.html#listSmartCardTrustAnchors">ListSmartCardTrustAnchors</a></td></tr>
+<td><a href="vim.host.ActiveDirectoryAuthentication.html#removeSmartCardTrustAnchor">RemoveSmartCardTrustAnchor</a></td></tr>
+<td><a href="vim.host.ActiveDirectoryAuthentication.html#removeSmartCardTrustAnchorByFingerprint">RemoveSmartCardTrustAnchorByFingerprint</a></td></tr>
+<td><a href="vim.host.ActiveDirectoryAuthentication.html#replaceSmartCardTrustAnchors">ReplaceSmartCardTrustAnchors</a></td></tr>
+<tr><td rowspan="2"><a href="vim.host.DatastoreSystem.html">HostDatastoreSystem</a></td>
+<td><a href="vim.host.DatastoreSystem.html#createVvolDatastore">CreateVvolDatastore</a></td></tr>
+<td><a href="vim.host.DatastoreSystem.html#removeDatastoreEx">RemoveDatastoreEx_Task</a></td></tr>
+<tr><td rowspan="15"><a href="vim.host.StorageSystem.html">HostStorageSystem</a></td>
+<td><a href="vim.host.StorageSystem.html#attachScsiLunEx">AttachScsiLunEx_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#changeNFSUserPassword">ChangeNFSUserPassword</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#clearNFSUser">ClearNFSUser</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#detachScsiLunEx">DetachScsiLunEx_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#markAsLocal">MarkAsLocal_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#markAsNonLocal">MarkAsNonLocal_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#markAsNonSsd">MarkAsNonSsd_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#markAsSsd">MarkAsSsd_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#mountVmfsVolumeEx">MountVmfsVolumeEx_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#queryNFSUser">QueryNFSUser</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#setNFSUser">SetNFSUser</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#turnDiskLocatorLedOff">TurnDiskLocatorLedOff_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#turnDiskLocatorLedOn">TurnDiskLocatorLedOn_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#unmapVmfsVolumeEx">UnmapVmfsVolumeEx_Task</a></td></tr>
+<td><a href="vim.host.StorageSystem.html#unmountVmfsVolumeEx">UnmountVmfsVolumeEx_Task</a></td></tr>
+<tr><td rowspan="2"><a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a></td>
+<td><a href="vim.host.VsanInternalSystem.html#queryVsanObjectUuidsByFilter">QueryVsanObjectUuidsByFilter</a></td></tr>
+<td><a href="vim.host.VsanInternalSystem.html#upgradeVsanObjects">UpgradeVsanObjects</a></td></tr>
+<tr><td rowspan="3"><a href="vim.host.VsanSystem.html">HostVsanSystem</a></td>
+<td><a href="vim.host.VsanSystem.html#evacuateNode">EvacuateVsanNode_Task</a></td></tr>
+<td><a href="vim.host.VsanSystem.html#recommissionNode">RecommissionVsanNode_Task</a></td></tr>
+<td><a href="vim.host.VsanSystem.html#unmountDiskMapping">UnmountDiskMapping_Task</a></td></tr>
+<tr><td><a href="vim.VirtualDiskManager.html">VirtualDiskManager</a></td>
+<td><a href="vim.VirtualDiskManager.html#importUnmanagedSnapshot">ImportUnmanagedSnapshot</a></td></tr>
+<tr><td rowspan="3"><a href="vim.VirtualMachine.html">VirtualMachine</a></td>
+<td><a href="vim.VirtualMachine.html#createSecondaryEx">CreateSecondaryVMEx_Task</a></td></tr>
+<td><a href="vim.VirtualMachine.html#queryFaultToleranceCompatibilityEx">QueryFaultToleranceCompatibilityEx</a></td></tr>
+<td><a href="vim.VirtualMachine.html#sendNMI">SendNMI</a></td></tr>
+</table>
+<h2><a name="newMethodParams">New Method Parameters</a></h2><table border="1" cellpadding="5" cellspacing="0"><tr><th><strong>Managed Object</strong></th><th><strong>Method</strong></th><th><strong>Parameter</strong></th></tr><tr><td><a href="vim.dvs.DistributedVirtualSwitchManager.html">DistributedVirtualSwitchManager</a></td>
+<td><a href="vim.dvs.DistributedVirtualSwitchManager.html#QueryAvailableDvsSpec">QueryAvailableDvsSpec</a></td>
+<td><a href="vim.dvs.DistributedVirtualSwitchManager.html#QueryAvailableDvsSpec">recommended</a></td></tr>
+<tr><td rowspan="2"><a href="vim.host.VsanInternalSystem.html">HostVsanInternalSystem</a></td>
+<td><a href="vim.host.VsanInternalSystem.html#CanProvisionObjects">CanProvisionObjects</a></td>
+<td><a href="vim.host.VsanInternalSystem.html#CanProvisionObjects">ignoreSatisfiability</a></td></tr>
+<td><a href="vim.host.VsanInternalSystem.html#ReconfigurationSatisfiable">ReconfigurationSatisfiable</a></td>
+<td><a href="vim.host.VsanInternalSystem.html#ReconfigurationSatisfiable">ignoreSatisfiability</a></td></tr>
+<tr><td rowspan="4"><a href="vim.host.VsanSystem.html">HostVsanSystem</a></td>
+<td><a href="vim.host.VsanSystem.html#RemoveDisk">RemoveDisk</a></td>
+<td><a href="vim.host.VsanSystem.html#RemoveDisk">maintenanceSpec</a></td></tr>
+<td><a href="vim.host.VsanSystem.html#RemoveDisk">RemoveDisk</a></td>
+<td><a href="vim.host.VsanSystem.html#RemoveDisk">timeout</a></td></tr>
+<td><a href="vim.host.VsanSystem.html#RemoveDiskMapping">RemoveDiskMapping</a></td>
+<td><a href="vim.host.VsanSystem.html#RemoveDiskMapping">maintenanceSpec</a></td></tr>
+<td><a href="vim.host.VsanSystem.html#RemoveDiskMapping">RemoveDiskMapping</a></td>
+<td><a href="vim.host.VsanSystem.html#RemoveDiskMapping">timeout</a></td></tr>
+<tr><td><a href="vim.TaskManager.html">TaskManager</a></td>
+<td><a href="vim.TaskManager.html#CreateTask">CreateTask</a></td>
+<td><a href="vim.TaskManager.html#CreateTask">activationId</a></td></tr>
+</table>
+<h2><a name="newMObjProps">New Managed Object Properties</a></h2><table border="1" cellpadding="5" cellspacing="0"><tr><th><strong>Managed Object</strong></th><th><strong>Property</strong></th></tr><tr><td rowspan="2"><a href="vim.vm.guest.GuestOperationsManager.html">GuestOperationsManager</a></td>
+<td><a href="vim.vm.guest.GuestOperationsManager.html#aliasManager">aliasManager</a></td></tr>
+<td><a href="vim.vm.guest.GuestOperationsManager.html#guestWindowsRegistryManager">guestWindowsRegistryManager</a></td></tr>
+<tr><td><a href="vim.host.GraphicsManager.html">HostGraphicsManager</a></td>
+<td><a href="vim.host.GraphicsManager.html#sharedPassthruGpuTypes">sharedPassthruGpuTypes</a></td></tr>
+<tr><td><a href="vim.vm.Snapshot.html">VirtualMachineSnapshot</a></td>
+<td><a href="vim.vm.Snapshot.html#vm">vm</a></td></tr>
+</table>
+<p>
+<script language="javascript" type="text/javascript">document.write(ID_Copyright);</script>
+<br><script language="javascript" type="text/javascript">document.write(ID_VersionInformation);</script>
+</p>
+</body>
+</html>
